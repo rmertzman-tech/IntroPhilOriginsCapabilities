@@ -1,376 +1,1579 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Architecture of Ethical Reasoning</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- 
-    Chosen Palette: Professional Indigo & Slate
-    Application Structure Plan: A thematic SPA divided into five core sections that mirror the essay's logical flow but are presented for interactive exploration. 1) Introduction with a "Gaming Discovery" hook. 2) A section detailing the Personal Reality Framework (PRF). 3) A deep dive into the "Three Universal Coordination Principles." 4) An interactive "Ethical Logic Toolkit" where users can explore ATL, STIT, and Coalition Logic. 5) A capstone "Ethical Cartography" simulation where users apply the entire framework to the AI Ethics case study. This structure guides the user from the foundational discovery to practical application, making the framework a usable tool rather than just a theoretical text.
-    Visualization & Content Choices: Report Info: Gaming Discovery Data -> Goal: Show evidence -> Viz: Bar Chart -> Interaction: Hover to see data points. -> Justification: The bar chart makes the performance advantages of diverse teams immediately apparent and impactful. -> Library: Chart.js. Report Info: PRF Components -> Goal: Explain -> Viz: Clickable cards -> Interaction: Click reveals details of each component (B, R, O, A+, C) and the UEV. Report Info: ATCF Components -> Goal: Explain measurement -> Viz: Doughnut Chart -> Interaction: Hover for component descriptions -> Justification: A doughnut chart is a good way to show a whole composed of parts (the ATCF score). -> Library: Chart.js. Report Info: Logical Tools -> Goal: Explain -> Viz: Tabbed interface for ATL, STIT, Coalition Logic -> Interaction: User clicks tabs to switch between explanations of the logical tools. Report Info: AI Ethics Case Study -> Goal: Simulate -> Viz: Step-by-step interactive workflow -> Interaction: User clicks through the 6 steps of the Ethical Cartography process, seeing how each tool is applied to generate a robust solution. This makes the abstract process concrete and actionable.
-    CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
-    -->
+    <title>The Constructor Theory of Capability - Interactive Guide</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f1f5f9; /* slate-100 */
-            color: #334155; /* slate-700 */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
-        .section-title {
-            color: #4338ca; /* indigo-700 */
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
-        .interactive-card {
-            transition: all 0.3s ease-in-out;
-            border: 1px solid #cbd5e1; /* slate-300 */
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
-        .interactive-card:hover, .interactive-card.active {
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: #667eea;
+        }
+
+        .tab-button:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-button.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .content-section {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #764ba2;
+            margin: 25px 0 15px 0;
+            font-size: 1.5em;
+        }
+
+        .definition-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .key-point {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #764ba2;
+        }
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .component-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border-top: 4px solid #667eea;
+        }
+
+        .component-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            border-color: #4f46e5; /* indigo-600 */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
-        .chart-container {
-            position: relative;
-            height: 300px;
+
+        .component-card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .interactive-example {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .capability-builder {
+            margin: 25px 0;
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #667eea;
+        }
+
+        .input-group input, .input-group select, .input-group textarea {
             width: 100%;
-            max-width: 600px;
-            margin: auto;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
         }
-        .tab-btn.active {
-            background-color: #4f46e5;
+
+        .input-group input:focus, .input-group select:focus, .input-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button.analyze-btn {
+            background: #667eea;
             color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
         }
-        .step-item.active .step-circle {
-            background-color: #4f46e5;
+
+        button.analyze-btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .result-box {
+            background: #f0f7ff;
+            border: 2px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .result-box.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .scale-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .scale-table th {
+            background: #667eea;
             color: white;
-            border-color: #4f46e5;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
         }
-         .step-item.active .step-title {
-            color: #4338ca;
+
+        .scale-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .scale-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .development-stages {
+            display: flex;
+            gap: 20px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .stage {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .stage::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 10px 10px 0 0;
+        }
+
+        .stage-number {
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .network-viz {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .network-type {
+            display: inline-block;
+            margin: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .network-type:hover {
+            border-color: #667eea;
+            transform: scale(1.05);
+        }
+
+        .network-type.selected {
+            background: #667eea;
+            color: white;
+            border-color: #764ba2;
+        }
+
+        .quiz-container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-question {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .quiz-options {
+            margin: 15px 0;
+        }
+
+        .quiz-option {
+            display: block;
+            padding: 12px;
+            margin: 8px 0;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            border-color: #667eea;
+            background: #f0f7ff;
+        }
+
+        .quiz-option.correct {
+            border-color: #28a745;
+            background: #d4edda;
+        }
+
+        .quiz-option.incorrect {
+            border-color: #dc3545;
+            background: #f8d7da;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .highlight {
+            background: linear-gradient(180deg, transparent 60%, #ffeb3b70 60%);
+            padding: 2px 4px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .tab-button {
+                width: 100%;
+            }
+
+            .component-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .development-stages {
+                flex-direction: column;
+            }
+        }
+
+        .constructor-diagram {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .flow-arrow {
+            display: inline-block;
+            margin: 0 15px;
+            color: #667eea;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .flow-item {
+            display: inline-block;
+            padding: 15px 25px;
+            background: #f8f9fa;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            margin: 10px 5px;
+            font-weight: 600;
+        }
+
+        .examples-list {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .examples-list li {
+            margin: 10px 0;
+            padding-left: 10px;
         }
     </style>
 </head>
-<body class="bg-slate-100 text-slate-700">
+<body>
+    <div class="container">
+        <header>
+            <h1>The Constructor Theory of Capability</h1>
+            <p class="subtitle">Understanding How Capabilities Develop and Enable Transformation</p>
+        </header>
 
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <h1 class="text-xl font-bold text-indigo-700">Ethical Architecture</h1>
-            <div class="hidden md:flex space-x-6 text-sm">
-                <a href="#foundation" class="text-slate-600 hover:text-indigo-600 transition">Foundation</a>
-                <a href="#principles" class="text-slate-600 hover:text-indigo-600 transition">Principles</a>
-                <a href="#language" class="text-slate-600 hover:text-indigo-600 transition">Language</a>
-                <a href="#toolkit" class="text-slate-600 hover:text-indigo-600 transition">Toolkit</a>
-                <a href="#cartography" class="text-slate-600 hover:text-indigo-600 transition">Cartography</a>
-            </div>
+        <nav class="nav-tabs">
+            <button class="tab-button active" onclick="showTab('overview')">Overview</button>
+            <button class="tab-button" onclick="showTab('definition')">What is a Capability?</button>
+            <button class="tab-button" onclick="showTab('structure')">Structure</button>
+            <button class="tab-button" onclick="showTab('development')">Development</button>
+            <button class="tab-button" onclick="showTab('networks')">Networks</button>
+            <button class="tab-button" onclick="showTab('applications')">Applications</button>
+            <button class="tab-button" onclick="showTab('builder')">Capability Builder</button>
+            <button class="tab-button" onclick="showTab('quiz')">Test Understanding</button>
         </nav>
-    </header>
 
-    <main class="container mx-auto px-6 py-12">
+        <!-- Overview Section -->
+        <div id="overview" class="content-section active">
+            <h2>Introduction to Constructor Theory of Capability</h2>
+            
+            <div class="definition-box">
+                <h3>Core Insight</h3>
+                <p><strong>Capabilities are constructors</strong> – systems that reliably cause transformations while remaining available for repeated use. They are the fundamental units of causation, enabling everything from molecular reactions to social change.</p>
+            </div>
 
-        <section id="intro" class="text-center mb-24">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4">The Architecture of Ethical Reasoning</h2>
-            <p class="max-w-3xl mx-auto text-lg text-slate-600">
-                This is a unified framework for applied ethics, moving from abstract theory to a practical science of coordination. It provides worldview-agnostic tools to navigate complex moral decisions and design effective ethical systems.
-            </p>
-        </section>
+            <div class="key-point">
+                <h4>🎯 Why This Matters</h4>
+                <p>Understanding capabilities helps us:</p>
+                <ul>
+                    <li>Develop personal skills and competencies systematically</li>
+                    <li>Build effective organizations and institutions</li>
+                    <li>Coordinate collective action for social change</li>
+                    <li>Design better educational and policy interventions</li>
+                    <li>Understand human flourishing and justice</li>
+                </ul>
+            </div>
 
-        <section id="foundation" class="mb-24 pt-8">
-            <h3 class="text-3xl font-bold text-center mb-2 section-title">Part I: The Foundation</h3>
-            <p class="text-center max-w-2xl mx-auto mb-12 text-slate-600">
-                A key discovery from over 4,000 international gaming sessions grounds this framework: culturally diverse teams consistently outperform homogeneous ones when they focus on coordination capabilities rather than shared beliefs.
-            </p>
-            <div class="bg-white p-8 rounded-xl shadow-lg">
-                <h4 class="text-xl font-bold text-center mb-4">Performance Advantage of Diverse Teams</h4>
-                <div class="chart-container">
-                    <canvas id="performanceChart"></canvas>
+            <h3>Key Concepts</h3>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h4>Constructor</h4>
+                    <p>A system that causes a transformation (S → S') while emerging unchanged and able to cause that transformation again. Like a catalyst, it enables change without being consumed.</p>
+                </div>
+                <div class="component-card">
+                    <h4>Transformation</h4>
+                    <p>A reliable change from one state (substrate S) to another state (S'). Capabilities are defined by what transformations they can cause.</p>
+                </div>
+                <div class="component-card">
+                    <h4>Reliability</h4>
+                    <p>The probability that the capability successfully causes its transformation when appropriate conditions are met. Development increases reliability.</p>
+                </div>
+                <div class="component-card">
+                    <h4>Substrate</h4>
+                    <p>What gets transformed. A capability requires appropriate substrates to operate on (e.g., a teaching capability requires students).</p>
                 </div>
             </div>
-            <div class="mt-12">
-                 <h4 class="text-2xl font-bold text-center mb-6">Your Ethical Mind as Living Architecture: The PRF</h4>
-                 <div class="grid md:grid-cols-3 gap-6">
-                    <div class="col-span-3 md:col-span-1 space-y-4">
-                         <div id="prf-card-b" class="interactive-card bg-white p-4 rounded-lg cursor-pointer"><strong>B:</strong> Belief System</div>
-                         <div id="prf-card-r" class="interactive-card bg-white p-4 rounded-lg cursor-pointer"><strong>R:</strong> Rule System</div>
-                         <div id="prf-card-o" class="interactive-card bg-white p-4 rounded-lg cursor-pointer"><strong>O:</strong> Ontological System</div>
-                         <div id="prf-card-a" class="interactive-card bg-white p-4 rounded-lg cursor-pointer"><strong>A+:</strong> Authenticity System</div>
-                         <div id="prf-card-c" class="interactive-card bg-white p-4 rounded-lg cursor-pointer"><strong>C:</strong> Coordination Capabilities</div>
-                         <div id="prf-card-uev" class="interactive-card bg-white p-4 rounded-lg cursor-pointer"><strong>UEV:</strong> Unified Experience Vector</div>
-                    </div>
-                    <div id="prf-detail-view" class="md:col-span-2 bg-white p-6 rounded-xl shadow-lg">
-                        <h5 id="prf-detail-title" class="font-bold text-xl mb-2 text-indigo-700">Click a component to learn more</h5>
-                        <p id="prf-detail-text" class="text-slate-600">Your moral reasoning operates through an integrated, measurable system. This Personal Reality Framework (PRF) is the living architecture of your ethical mind.</p>
-                    </div>
-                 </div>
-            </div>
-        </section>
 
-        <section id="principles" class="mb-24 pt-8">
-            <h3 class="text-3xl font-bold text-center mb-2 section-title">The Three Universal Coordination Principles</h3>
-            <p class="text-center max-w-2xl mx-auto mb-12 text-slate-600">
-                Cross-cultural research reveals that all effective ethical coordination, regardless of the specific moral tradition, relies on three organizational principles.
-            </p>
-            <div class="grid md:grid-cols-3 gap-8">
-                 <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-                    <div class="text-4xl mb-4">1</div>
-                    <h4 class="font-bold text-xl mb-2">Capability-Based Connection</h4>
-                    <p class="text-slate-600">Coordination emerges from recognizing others' ethical capabilities, not from demanding shared beliefs. A utilitarian and a deontologist can work together by respecting each other's analytical strengths.</p>
+            <div class="constructor-diagram">
+                <h3>The Constructor Property</h3>
+                <div style="margin: 30px 0;">
+                    <div class="flow-item">Substrate (S)</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-item" style="border-color: #764ba2; background: #764ba215;">Constructor (C)<br><small>remains unchanged</small></div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-item">Transformed (S')</div>
                 </div>
-                 <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-                    <div class="text-4xl mb-4">2</div>
-                    <h4 class="font-bold text-xl mb-2">Temporal Coherence</h4>
-                    <p class="text-slate-600">Ethical decisions must integrate past wisdom, present reality, and future consequences. This ability to maintain coherence across time is a measurable predictor of ethical capability.</p>
-                </div>
-                 <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-                    <div class="text-4xl mb-4">3</div>
-                    <h4 class="font-bold text-xl mb-2">Cross-Scale Organization</h4>
-                    <p class="text-slate-600">The same architectural principles that enable individual moral agency also enable effective family, institutional, and societal ethics. Ethical systems are fractal.</p>
-                </div>
+                <p style="margin-top: 20px; color: #666;">The constructor C persists and can perform the transformation again (catalytic, repeatable)</p>
             </div>
-        </section>
+        </div>
 
-        <section id="language" class="mb-24 pt-8">
-            <h3 class="text-3xl font-bold text-center mb-2 section-title">Part II: The Language of Capability</h3>
-            <p class="text-center max-w-2xl mx-auto mb-12 text-slate-600">
-                This framework revolutionizes how we understand ethical statements. Instead of asking what a statement like "We should help the poor" *means* as a universal truth, we ask what *capabilities* an agent needs to work with it effectively.
-            </p>
-            <div class="bg-white rounded-xl shadow-lg p-8">
-                <h4 class="text-xl font-bold text-center">Capability Specification for: "We Should Help the Poor"</h4>
-                <p class="text-center text-sm text-slate-500 mb-8">Effective use of this statement requires four distinct capabilities:</p>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-                    <div>
-                        <div class="mx-auto bg-indigo-100 text-indigo-700 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold">R</div>
-                        <h5 class="font-semibold mt-4">Recognition</h5>
-                        <p class="text-sm text-slate-500">Ability to identify poverty's impacts.</p>
-                    </div>
-                    <div>
-                        <div class="mx-auto bg-indigo-100 text-indigo-700 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold">R</div>
-                        <h5 class="font-semibold mt-4">Response</h5>
-                        <p class="text-sm text-slate-500">Procedural knowledge for anti-poverty actions.</p>
-                    </div>
-                    <div>
-                        <div class="mx-auto bg-indigo-100 text-indigo-700 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold">C</div>
-                        <h5 class="font-semibold mt-4">Coordination</h5>
-                        <p class="text-sm text-slate-500">Skills to work with others on complementary actions.</p>
-                    </div>
-                    <div>
-                        <div class="mx-auto bg-indigo-100 text-indigo-700 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold">A</div>
-                        <h5 class="font-semibold mt-4">Assessment</h5>
-                        <p class="text-sm text-slate-500">Meta-capacity to evaluate and improve strategies.</p>
-                    </div>
+        <!-- Definition Section -->
+        <div id="definition" class="content-section">
+            <h2>What Is a Capability?</h2>
+
+            <div class="definition-box">
+                <h3>Formal Definition</h3>
+                <p>A <span class="highlight">capability</span> is a <strong>stable, reliable capacity to cause specific transformations</strong> under appropriate conditions, either:</p>
+                <ul>
+                    <li><strong>Task-achieving</strong> (bringing about particular outcomes - agent function)</li>
+                    <li><strong>Constitutive</strong> (maintaining complex systems in operational states - system function)</li>
+                </ul>
+            </div>
+
+            <h3>Key Properties</h3>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h4>1. Stability</h4>
+                    <p>The capacity persists across time and varying conditions. It doesn't disappear after one use.</p>
+                </div>
+                <div class="component-card">
+                    <h4>2. Reliability</h4>
+                    <p>High probability of successful transformation when conditions are met. Not random or occasional.</p>
+                </div>
+                <div class="component-card">
+                    <h4>3. Transformation-Specific</h4>
+                    <p>Causes particular types of changes, not just any change. Each capability has its domain.</p>
+                </div>
+                <div class="component-card">
+                    <h4>4. Condition-Dependent</h4>
+                    <p>Requires appropriate context and inputs to activate. Right substrate, sufficient resources, enabling conditions.</p>
+                </div>
+                <div class="component-card">
+                    <h4>5. Constructive</h4>
+                    <p>Actually makes things happen (causal efficacy), not just correlational or observational.</p>
                 </div>
             </div>
-        </section>
 
-        <section id="toolkit" class="mb-24 pt-8">
-            <h3 class="text-3xl font-bold text-center mb-2 section-title">Part III: The Measurement Toolkit</h3>
-             <p class="text-center max-w-2xl mx-auto mb-12 text-slate-600">
-                This framework integrates formal logic as a practical toolkit for ethical reasoning. Explore the different tools and their applications below.
-            </p>
-            <div class="bg-white rounded-xl shadow-lg">
-                <div class="flex border-b border-slate-200">
-                    <button class="tab-btn flex-1 p-4 font-semibold text-slate-500 transition active" data-tab="atl">ATL</button>
-                    <button class="tab-btn flex-1 p-4 font-semibold text-slate-500 transition" data-tab="stit">STIT</button>
-                    <button class="tab-btn flex-1 p-4 font-semibold text-slate-500 transition" data-tab="coalition">Coalition Logic</button>
-                    <button class="tab-btn flex-1 p-4 font-semibold text-slate-500 transition" data-tab="atcf">ATCF</button>
+            <h3>Examples Across Scales</h3>
+            <table class="scale-table">
+                <thead>
+                    <tr>
+                        <th>Scale</th>
+                        <th>Capability (Constructor)</th>
+                        <th>Transformation</th>
+                        <th>Substrate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Chemical</strong></td>
+                        <td>Enzyme (catalyst)</td>
+                        <td>Substrate → Product</td>
+                        <td>Specific molecules</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Biological</strong></td>
+                        <td>Immune system</td>
+                        <td>Pathogen → Neutralized</td>
+                        <td>Invading organisms</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Neural</strong></td>
+                        <td>Pattern recognition</td>
+                        <td>Sensory input → Pattern</td>
+                        <td>Visual/auditory data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cognitive</strong></td>
+                        <td>Language comprehension</td>
+                        <td>Symbols → Meaning</td>
+                        <td>Linguistic input</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Social</strong></td>
+                        <td>Court system</td>
+                        <td>Dispute → Resolution</td>
+                        <td>Legal conflicts</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Economic</strong></td>
+                        <td>Factory</td>
+                        <td>Materials → Products</td>
+                        <td>Raw materials</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cultural</strong></td>
+                        <td>Education system</td>
+                        <td>Student → Educated</td>
+                        <td>Learners</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="key-point">
+                <h4>🔑 Core Principle</h4>
+                <p><strong>Same principles apply from molecules to societies.</strong> Whether it's an enzyme, a skill, or an institution, if it reliably causes transformations while persisting, it's a constructor/capability.</p>
+            </div>
+        </div>
+
+        <!-- Structure Section -->
+        <div id="structure" class="content-section">
+            <h2>The Structure of Capabilities</h2>
+
+            <div class="definition-box">
+                <p>Every capability consists of five essential components working together. Understanding this structure helps us diagnose why capabilities fail and how to strengthen them.</p>
+            </div>
+
+            <div class="component-grid">
+                <div class="component-card">
+                    <h4>1. Information/Knowledge</h4>
+                    <p><strong>What:</strong> Encoded specification of transformation</p>
+                    <p><strong>Where stored:</strong> DNA, neural patterns, institutional rules, cultural practices</p>
+                    <p><strong>Function:</strong> Provides instructions for transformation</p>
                 </div>
-                <div class="p-8">
-                    <div id="tab-content-atl" class="tab-content">
-                        <h4 class="text-xl font-bold">Alternating-Time Temporal Logic (ATL)</h4>
-                        <p class="text-sm text-slate-500 mb-4">For Strategic Ethical Analysis</p>
-                        <p>ATL shifts the question from "Is this action right?" to "Do we have a strategy to ensure an ethical outcome?" It transforms abstract moral debate into practical analysis of capabilities and coordination.</p>
-                        <p class="mt-2 text-sm bg-slate-50 p-3 rounded-lg"><strong>Example:</strong> "Does our society have coalition strategies to guarantee universal healthcare access, regardless of political opposition or economic shifts?"</p>
-                    </div>
-                    <div id="tab-content-stit" class="tab-content hidden">
-                        <h4 class="text-xl font-bold">"Seeing To It That" Logic (STIT)</h4>
-                        <p class="text-sm text-slate-500 mb-4">For Personal Moral Agency</p>
-                        <p>STIT formalizes individual responsibility. It distinguishes between hoping for an outcome and having the actual capability to ethically ensure it happens. This prevents making commitments based on good intentions alone.</p>
-                         <p class="mt-2 text-sm bg-slate-50 p-3 rounded-lg"><strong>Example:</strong> It helps differentiate "I hope I'll be a good parent" (a wish) from "I have the skills and resources to ensure my child receives needed care" (a commitment based on capability).</p>
-                    </div>
-                    <div id="tab-content-coalition" class="tab-content hidden">
-                        <h4 class="text-xl font-bold">Coalition Logic</h4>
-                         <p class="text-sm text-slate-500 mb-4">For Distributed Ethical Responsibility</p>
-                        <p>This tool is for problems no single person can solve. It models how groups can coordinate their capabilities to achieve ethical outcomes that are beyond any individual's power.</p>
-                        <p class="mt-2 text-sm bg-slate-50 p-3 rounded-lg"><strong>Example:</strong> "What combination of roles (HR, leadership, staff) and capabilities is needed to eliminate hiring bias, and how must they coordinate to succeed?"</p>
-                    </div>
-                    <div id="tab-content-atcf" class="tab-content hidden grid md:grid-cols-2 gap-6 items-center">
-                        <div>
-                            <h4 class="text-xl font-bold">Adaptive Temporal Coherence Function (ATCF)</h4>
-                            <p class="text-sm text-slate-500 mb-4">For Mathematical Ethics Across Time</p>
-                            <p>The ATCF is a measurable assessment of an agent's ability to maintain a coherent ethical identity over time. High scores predict superior ethical decision-making. It has four key components.</p>
-                        </div>
-                        <div class="chart-container" style="height: 250px;">
-                             <canvas id="atcfChart"></canvas>
-                        </div>
+
+                <div class="component-card">
+                    <h4>2. Physical/Material</h4>
+                    <p><strong>What:</strong> Physical substrate embodying the constructor</p>
+                    <p><strong>Examples:</strong> Protein structure, neural circuitry, trained muscles, infrastructure</p>
+                    <p><strong>Function:</strong> Implements the transformation</p>
+                </div>
+
+                <div class="component-card">
+                    <h4>3. Energy/Resources</h4>
+                    <p><strong>What:</strong> Free energy or resources needed</p>
+                    <p><strong>Examples:</strong> ATP, glucose, money, social capital</p>
+                    <p><strong>Function:</strong> Powers the transformation</p>
+                </div>
+
+                <div class="component-card">
+                    <h4>4. Control/Regulation</h4>
+                    <p><strong>What:</strong> Mechanisms determining activation</p>
+                    <p><strong>Examples:</strong> Regulatory genes, executive function, norms, feedback systems</p>
+                    <p><strong>Function:</strong> Ensures appropriate activation</p>
+                </div>
+
+                <div class="component-card">
+                    <h4>5. Context-Recognition</h4>
+                    <p><strong>What:</strong> Ability to detect right conditions</p>
+                    <p><strong>Examples:</strong> Sensory systems, pattern recognition, institutional procedures</p>
+                    <p><strong>Function:</strong> Matches capability to situation</p>
+                </div>
+            </div>
+
+            <div class="interactive-example">
+                <h3>🎯 Example: Language Comprehension Capability</h3>
+                
+                <div class="examples-list">
+                    <p><strong>Information component:</strong></p>
+                    <ul>
+                        <li>Grammar rules (syntax)</li>
+                        <li>Vocabulary (semantics)</li>
+                        <li>Pragmatic knowledge (context interpretation)</li>
+                        <li>Stored in neural networks (weights, connections)</li>
+                    </ul>
+
+                    <p><strong>Physical component:</strong></p>
+                    <ul>
+                        <li>Wernicke's area (language comprehension region)</li>
+                        <li>Associated neural circuits</li>
+                        <li>Sensory processing systems</li>
+                    </ul>
+
+                    <p><strong>Energy component:</strong></p>
+                    <ul>
+                        <li>Neural metabolism (glucose, oxygen)</li>
+                        <li>Attention (limited cognitive resource)</li>
+                    </ul>
+
+                    <p><strong>Control component:</strong></p>
+                    <ul>
+                        <li>Executive function (deciding to listen)</li>
+                        <li>Attention allocation</li>
+                        <li>Working memory management</li>
+                    </ul>
+
+                    <p><strong>Context-recognition component:</strong></p>
+                    <ul>
+                        <li>Detecting linguistic input (vs. noise)</li>
+                        <li>Identifying language (English vs. Spanish)</li>
+                        <li>Reading pragmatic cues (literal vs. sarcastic)</li>
+                    </ul>
+                </div>
+
+                <div class="key-point">
+                    <p><strong>Transformation:</strong> Acoustic/visual patterns → Semantic meaning + pragmatic understanding</p>
+                    <p><strong>Constructor property:</strong> After comprehending a sentence, the capability remains intact and can comprehend the next sentence (catalytic, repeatable).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Development Section -->
+        <div id="development" class="content-section">
+            <h2>How Capabilities Develop</h2>
+
+            <div class="definition-box">
+                <h3>Three Core Processes</h3>
+                <ol>
+                    <li><strong>Assembly:</strong> Building constructors from components</li>
+                    <li><strong>Refinement:</strong> Improving reliability through feedback</li>
+                    <li><strong>Composition:</strong> Combining simpler constructors into complex ones</li>
+                </ol>
+            </div>
+
+            <h3>Learning: Constructor Assembly Through Practice</h3>
+            <div class="development-stages">
+                <div class="stage">
+                    <div class="stage-number">1</div>
+                    <h4>Assembly (Initial Learning)</h4>
+                    <ul>
+                        <li>Random exploration or guided instruction</li>
+                        <li>Some attempts successful, others fail</li>
+                        <li>Successful pathways reinforced</li>
+                        <li><strong>Result:</strong> Weak, unreliable constructor emerges</li>
+                    </ul>
+                </div>
+
+                <div class="stage">
+                    <div class="stage-number">2</div>
+                    <h4>Refinement (Practice)</h4>
+                    <ul>
+                        <li>Repeated activation of constructor</li>
+                        <li>Successes strengthen constructor</li>
+                        <li>Failures trigger adjustment</li>
+                        <li><strong>Result:</strong> Constructor becomes more reliable, faster, efficient</li>
+                    </ul>
+                </div>
+
+                <div class="stage">
+                    <div class="stage-number">3</div>
+                    <h4>Automatization (Expertise)</h4>
+                    <ul>
+                        <li>Constructor operates with minimal conscious control</li>
+                        <li>Freed resources for higher-level constructors</li>
+                        <li>Can be composed with other capabilities</li>
+                        <li><strong>Result:</strong> Stable, efficient, composable capability</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="interactive-example">
+                <h3>🚗 Example: Learning to Drive</h3>
+                <div class="examples-list">
+                    <p><strong>Stage 1 - Assembly:</strong> Initial lessons—learning steering, braking (many failures, slow, effortful)</p>
+                    <p><strong>Stage 2 - Refinement:</strong> Practice driving—smoother control, fewer errors, still requires attention</p>
+                    <p><strong>Stage 3 - Automatization:</strong> Experienced driving—automatic control, attention available for navigation/conversation</p>
+                    <p><strong>Neural mechanism:</strong> Synaptic pruning + myelination creates efficient, reliable constructors</p>
+                </div>
+            </div>
+
+            <div class="key-point">
+                <h4>🔄 Feedback Loops in Capability Development</h4>
+                <div class="constructor-diagram">
+                    <div style="margin: 20px 0; text-align: left; max-width: 600px; margin: 0 auto;">
+                        <p><strong>Attempt transformation</strong> → <strong>Success/failure</strong> →</p>
+                        <p style="margin-left: 40px;">If <em>success:</em> Reinforce pathway (constructor strengthens)</p>
+                        <p style="margin-left: 40px;">If <em>failure:</em> Adjust pathway (constructor modifies)</p>
+                        <p>→ <strong>Next attempt more likely to succeed</strong> →</p>
+                        <p style="margin-left: 40px;">Greater success → More practice (motivation) →</p>
+                        <p style="margin-left: 80px;"><strong>Stronger constructor → Stable capability</strong></p>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section id="cartography" class="pt-8">
-            <h3 class="text-3xl font-bold text-center mb-2 section-title">Part IV: Applied Integration - Ethical Cartography</h3>
-            <p class="text-center max-w-2xl mx-auto mb-12 text-slate-600">
-                Ethical Cartography is the unified process in action. It's about mapping a moral territory and designing navigation routes, not just arguing about destinations. Let's apply it to the challenge of developing AI Ethics Guidelines.
-            </p>
-            <div class="bg-white rounded-xl shadow-lg p-8">
-                 <div class="flex flex-col md:flex-row gap-8">
-                    <div class="w-full md:w-1/3 space-y-2">
-                        <div id="step-1" class="step-item interactive-card p-3 rounded-lg cursor-pointer active">
-                            <h5 class="step-title font-semibold">1. Cross-Scale Analysis</h5>
-                        </div>
-                        <div id="step-2" class="step-item interactive-card p-3 rounded-lg cursor-pointer">
-                            <h5 class="step-title font-semibold">2. PRF Proposition Development</h5>
-                        </div>
-                        <div id="step-3" class="step-item interactive-card p-3 rounded-lg cursor-pointer">
-                             <h5 class="step-title font-semibold">3. Strategic Analysis (ATL)</h5>
-                        </div>
-                        <div id="step-4" class="step-item interactive-card p-3 rounded-lg cursor-pointer">
-                             <h5 class="step-title font-semibold">4. Agency Assessment (STIT)</h5>
-                        </div>
-                         <div id="step-5" class="step-item interactive-card p-3 rounded-lg cursor-pointer">
-                             <h5 class="step-title font-semibold">5. Temporal Check (ATCF)</h5>
-                        </div>
-                         <div id="step-6" class="step-item interactive-card p-3 rounded-lg cursor-pointer">
-                             <h5 class="step-title font-semibold">6. Game-Theoretic Validation</h5>
-                        </div>
-                    </div>
-                    <div class="w-full md:w-2/3 bg-slate-50 p-6 rounded-lg">
-                        <h4 id="step-detail-title" class="font-bold text-xl mb-2 text-indigo-700"></h4>
-                        <p id="step-detail-text" class="text-slate-600"></p>
-                    </div>
-                 </div>
+            <h3>Aristotle Was Right: Habituation</h3>
+            <div class="definition-box">
+                <p><em>"We become just by doing just actions, temperate by doing temperate actions, brave by doing brave actions."</em></p>
+                <p>Virtue = capability developed through repeated practice. This is constructor theory's prediction: constructors self-improve through error correction and optimization.</p>
             </div>
-        </section>
+        </div>
 
-    </main>
-    <footer class="text-center py-8 text-sm text-slate-500">
-        <p>The Architecture of Ethical Reasoning: A Unified Framework. FAIM-QIRF.</p>
-        <a href="https://rmertzman-tech.github.io/capability-coordination-framework/index.html" class="hover:text-indigo-600 underline" target="_blank">Technical Repository</a>
-    </footer>
+        <!-- Networks Section -->
+        <div id="networks" class="content-section">
+            <h2>Capability Networks</h2>
+
+            <div class="definition-box">
+                <h3>From Individual to Collective</h3>
+                <p>Individual capabilities are limited. <strong>Capability networks</strong> overcome limitations through distribution, specialization, coordination, and redundancy.</p>
+            </div>
+
+            <h3>Types of Capability Networks</h3>
+
+            <div class="network-viz">
+                <h4>Select a network type to learn more:</h4>
+                <div class="network-type" onclick="showNetworkInfo('sequential')">
+                    <strong>Sequential Networks</strong><br>
+                    <small>Pipeline Constructors</small>
+                </div>
+                <div class="network-type" onclick="showNetworkInfo('parallel')">
+                    <strong>Parallel Networks</strong><br>
+                    <small>Distributed Constructors</small</div>
+                <div class="network-type" onclick="showNetworkInfo('hierarchical')">
+                    <strong>Hierarchical Networks</strong><br>
+                    <small>Nested Constructors</small>
+                </div>
+                <div class="network-type" onclick="showNetworkInfo('complex')">
+                    <strong>Complex Networks</strong><br>
+                    <small>Interconnected Constructors</small>
+                </div>
+
+                <div id="network-sequential" class="result-box">
+                    <h4>Sequential Networks (Pipeline)</h4>
+                    <p><strong>Structure:</strong> Constructor₁ → Constructor₂ → Constructor₃ → Final product</p>
+                    <div class="constructor-diagram">
+                        <div class="flow-item">Raw Materials</div>
+                        <span class="flow-arrow">→</span>
+                        <div class="flow-item">C₁: Mining</div>
+                        <span class="flow-arrow">→</span>
+                        <div class="flow-item">C₂: Smelting</div>
+                        <span class="flow-arrow">→</span>
+                        <div class="flow-item">C₃: Fabrication</div>
+                        <span class="flow-arrow">→</span>
+                        <div class="flow-item">Finished Product</div>
+                    </div>
+                    <p><strong>Example:</strong> Manufacturing pipeline</p>
+                    <p><strong>Coordination:</strong> Output of Cᵢ must be appropriate substrate for Cᵢ₊₁</p>
+                    <p><strong>Reliability:</strong> Network reliability = Product of each constructor's reliability</p>
+                    <p><strong>Challenge:</strong> If any constructor fails, whole transformation fails</p>
+                    <p><strong>Solution:</strong> Add redundancy at critical steps</p>
+                </div>
+
+                <div id="network-parallel" class="result-box">
+                    <h4>Parallel Networks (Distributed)</h4>
+                    <p><strong>Structure:</strong> Multiple constructors perform same/similar transformations simultaneously</p>
+                    <p><strong>Example:</strong> Immune system—billions of immune cells distributed throughout body, each can recognize and neutralize pathogens</p>
+                    <p><strong>Coordination:</strong> Minimal—constructors operate independently</p>
+                    <p><strong>Reliability:</strong> Very high even if individual constructors somewhat unreliable (1 - ∏(1 - reliability of each))</p>
+                    <p><strong>Advantage:</strong> Robust to local failures—if many fail, some still succeed</p>
+                </div>
+
+                <div id="network-hierarchical" class="result-box">
+                    <h4>Hierarchical Networks (Nested)</h4>
+                    <p><strong>Structure:</strong> Higher-level constructors composed of lower-level constructors</p>
+                    <p><strong>Example:</strong> Language production</p>
+                    <ul style="text-align: left;">
+                        <li><strong>Level 1:</strong> Phoneme production (motor control of vocal tract)</li>
+                        <li><strong>Level 2:</strong> Word production (sequencing phonemes)</li>
+                        <li><strong>Level 3:</strong> Sentence production (applying grammar rules)</li>
+                        <li><strong>Level 4:</strong> Discourse production (maintaining coherence, achieving goals)</li>
+                    </ul>
+                    <p><strong>Coordination:</strong> Higher levels activate/coordinate lower levels</p>
+                    <p><strong>Development strategy:</strong> Build reliable lower levels first, then construct higher levels</p>
+                </div>
+
+                <div id="network-complex" class="result-box">
+                    <h4>Complex Networks (Interconnected)</h4>
+                    <p><strong>Structure:</strong> Multiple constructors with complex, bidirectional relationships</p>
+                    <p><strong>Example:</strong> The brain—billions of neurons organized into circuits, regions, systems with feedback loops and modulatory systems</p>
+                    <p><strong>Coordination:</strong> Very complex—requires regulatory mechanisms, timing, synchronization</p>
+                    <p><strong>Reliability:</strong> Can be very high due to:</p>
+                    <ul style="text-align: left;">
+                        <li>Redundancy (many pathways to same outcome)</li>
+                        <li>Plasticity (network can reorganize if parts fail)</li>
+                        <li>Degeneracy (multiple structures can perform same function)</li>
+                    </ul>
+                    <p><strong>Emergent properties:</strong> Consciousness, reasoning, creativity not present in individual neurons</p>
+                </div>
+            </div>
+
+            <h3>🌳 Case Study: Green Belt Movement (Wangari Maathai)</h3>
+            <div class="interactive-example">
+                <p><strong>Goal:</strong> Transform degraded, unjust society → Thriving, just society</p>
+                
+                <h4>Interconnected Capabilities Built:</h4>
+                <div class="component-grid">
+                    <div class="component-card">
+                        <h4>Environmental</h4>
+                        <p>Tree planting, nursery management, ecological restoration</p>
+                    </div>
+                    <div class="component-card">
+                        <h4>Economic</h4>
+                        <p>Income generation, resource management, market access</p>
+                    </div>
+                    <div class="component-card">
+                        <h4>Political</h4>
+                        <p>Organizing, advocacy, resistance, democratic participation</p>
+                    </div>
+                    <div class="component-card">
+                        <h4>Social</h4>
+                        <p>Community building, solidarity, mutual support</p>
+                    </div>
+                    <div class="component-card">
+                        <h4>Cognitive</h4>
+                        <p>Consciousness-raising, systems thinking, literacy</p>
+                    </div>
+                </div>
+
+                <div class="key-point">
+                    <h4>Why It Worked:</h4>
+                    <ul>
+                        <li><strong>Positive feedback loops:</strong> Success in one area strengthened others</li>
+                        <li><strong>Redundancy:</strong> Thousands of women's groups—movement robust to local failures</li>
+                        <li><strong>Distributed construction:</strong> Not dependent on single leader</li>
+                        <li><strong>Compatible capabilities:</strong> Different motivations, shared practice (tree-planting)</li>
+                    </ul>
+                    <p><strong>Result:</strong> 51 million trees planted, tens of thousands empowered, democratic transition supported</p>
+                </div>
+            </div>
+
+            <h3>Coordination Mechanisms</h3>
+            <table class="scale-table">
+                <thead>
+                    <tr>
+                        <th>Mechanism</th>
+                        <th>How It Works</th>
+                        <th>Examples</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Shared Substrates</strong></td>
+                        <td>Output of C₁ becomes input to C₂</td>
+                        <td>Metabolic pathways, manufacturing pipelines</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Signaling Systems</strong></td>
+                        <td>Constructors send/receive coordination signals</td>
+                        <td>Hormones, prices, language, APIs</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hierarchical Control</strong></td>
+                        <td>Higher-level constructors activate/inhibit lower ones</td>
+                        <td>Executive function, management, government</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Distributed Consensus</strong></td>
+                        <td>No central controller; local interactions coordinate</td>
+                        <td>Ant colonies, markets, democracies</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Shared Rules/Protocols</strong></td>
+                        <td>Common standards enable coordination</td>
+                        <td>Social norms, communication protocols, traffic rules</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Applications Section -->
+        <div id="applications" class="content-section">
+            <h2>Applications Across Domains</h2>
+
+            <div class="component-grid">
+                <div class="component-card">
+                    <h4>🎓 Education</h4>
+                    <p><strong>Traditional:</strong> Transfer information</p>
+                    <p><strong>Constructor view:</strong> Build capabilities through practice, feedback, scaffolding</p>
+                    <p><strong>Implication:</strong> Need repeated practice with appropriate substrates, not just lectures</p>
+                </div>
+
+                <div class="component-card">
+                    <h4>🏢 Organizations</h4>
+                    <p><strong>View:</strong> Network of human and technological constructors</p>
+                    <p><strong>Failure modes:</strong> Constructor damage (key people leave), resource depletion, coordination failure</p>
+                    <p><strong>Success:</strong> Build, coordinate, and maintain capability networks</p>
+                </div>
+
+                <div class="component-card">
+                    <h4>✊ Social Movements</h4>
+                    <p><strong>Goal:</strong> Build capability networks for transformation</p>
+                    <p><strong>Strategy:</strong> Develop individual, collective, institutional, and cultural capabilities simultaneously</p>
+                    <p><strong>Success factors:</strong> Redundancy, positive feedback, strategic coordination</p>
+                </div>
+
+                <div class="component-card">
+                    <h4>🏥 Public Health</h4>
+                    <p><strong>View:</strong> Building population-level constitutive capabilities</p>
+                    <p><strong>Examples:</strong> Vaccination (installing immune constructors), water treatment (ongoing safety transformation)</p>
+                    <p><strong>Focus:</strong> Prevention through capability building, not just treatment</p>
+                </div>
+
+                <div class="component-card">
+                    <h4>🗳️ Democracy</h4>
+                    <p><strong>View:</strong> Distributed capability network requiring many functioning constructors</p>
+                    <p><strong>Requirements:</strong> Informed citizens, free press, fair elections, independent courts, democratic culture</p>
+                    <p><strong>Challenge:</strong> Continuous maintenance needed; can atrophy</p>
+                </div>
+
+                <div class="component-card">
+                    <h4>🌍 Climate Change</h4>
+                    <p><strong>Challenge:</strong> Global coordination problem</p>
+                    <p><strong>Need:</strong> Knowledge + Technology + Economic + Political + Cultural capabilities working together</p>
+                    <p><strong>Current gap:</strong> Have individual constructors, lack coordination mechanisms at scale</p>
+                </div>
+            </div>
+
+            <h3>Task-Achieving vs. Constitutive Capabilities</h3>
+            <div class="interactive-example">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div style="border: 3px solid #667eea; padding: 20px; border-radius: 10px;">
+                        <h4 style="color: #667eea;">Task-Achieving Capabilities</h4>
+                        <p><strong>Purpose:</strong> Bring about specific outcome state</p>
+                        <p><strong>Examples:</strong></p>
+                        <ul>
+                            <li>Building a house</li>
+                            <li>Solving a problem</li>
+                            <li>Writing a paper</li>
+                            <li>Organizing an event</li>
+                        </ul>
+                        <p><strong>Structure:</strong> Clear beginning and end</p>
+                        <p><strong>Success:</strong> Goal state achieved</p>
+                    </div>
+                    <div style="border: 3px solid #764ba2; padding: 20px; border-radius: 10px;">
+                        <h4 style="color: #764ba2;">Constitutive Capabilities</h4>
+                        <p><strong>Purpose:</strong> Keep system in operational range despite perturbations</p>
+                        <p><strong>Examples:</strong></p>
+                        <ul>
+                            <li>Body temperature regulation</li>
+                            <li>Immune function</li>
+                            <li>Social order maintenance</li>
+                            <li>Ecosystem stability</li>
+                        </ul>
+                        <p><strong>Structure:</strong> Ongoing transformation maintaining balance</p>
+                        <p><strong>Success:</strong> System remains functional</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capability Builder Section -->
+        <div id="builder" class="content-section">
+            <h2>🛠️ Capability Builder Tool</h2>
+            
+            <div class="definition-box">
+                <p>Use this tool to analyze a capability you want to develop or understand. The framework will help you assess its current state and identify what's needed for development.</p>
+            </div>
+
+            <div class="capability-builder">
+                <div class="input-group">
+                    <label>What transformation do you want to cause reliably?</label>
+                    <input type="text" id="transformation" placeholder="e.g., Anxious students → Confident students; Conflict → Resolution">
+                </div>
+
+                <div class="input-group">
+                    <label>Is this capability:</label>
+                    <select id="capability-type">
+                        <option value="">Select...</option>
+                        <option value="task">Task-achieving (specific goal)</option>
+                        <option value="constitutive">Constitutive (ongoing maintenance)</option>
+                        <option value="both">Both</option>
+                    </select>
+                </div>
+
+                <h3>Assess the Five Components:</h3>
+
+                <div class="input-group">
+                    <label>1. Information/Knowledge Component</label>
+                    <textarea id="info-component" rows="3" placeholder="What knowledge or information is needed? Where is it stored?"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label>2. Physical/Material Component</label>
+                    <textarea id="physical-component" rows="3" placeholder="What physical substrate implements this? (body, brain, tools, infrastructure)"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label>3. Energy/Resource Component</label>
+                    <textarea id="energy-component" rows="3" placeholder="What resources or energy are needed? (time, money, attention, fuel)"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label>4. Control/Regulation Component</label>
+                    <textarea id="control-component" rows="3" placeholder="How is activation controlled? What determines when this capability operates?"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label>5. Context-Recognition Component</label>
+                    <textarea id="context-component" rows="3" placeholder="How do you recognize when conditions are right? What signals trigger activation?"></textarea>
+                </div>
+
+                <h3>Current State Assessment:</h3>
+
+                <div class="input-group">
+                    <label>Current reliability (0-100%):</label>
+                    <input type="number" id="reliability" min="0" max="100" placeholder="How often does it work when you try?">
+                </div>
+
+                <div class="input-group">
+                    <label>Development stage:</label>
+                    <select id="development-stage">
+                        <option value="">Select...</option>
+                        <option value="none">Not yet started (no constructor)</option>
+                        <option value="assembly">Assembly (weak, unreliable)</option>
+                        <option value="refinement">Refinement (improving, still requires effort)</option>
+                        <option value="automatization">Automatization (reliable, efficient)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>What's the biggest constraint right now?</label>
+                    <select id="constraint">
+                        <option value="">Select...</option>
+                        <option value="info">Missing information/knowledge</option>
+                        <option value="physical">Lack of physical substrate (tools, infrastructure, trained body/brain)</option>
+                        <option value="energy">Insufficient resources/energy</option>
+                        <option value="control">Poor control/regulation</option>
+                        <option value="context">Can't recognize appropriate contexts</option>
+                        <option value="substrate">No appropriate substrates to practice on</option>
+                        <option value="feedback">Not getting useful feedback</option>
+                    </select>
+                </div>
+
+                <button class="analyze-btn" onclick="analyzeCapability()">Analyze Capability</button>
+
+                <div id="analysis-result" class="result-box">
+                    <!-- Results will be inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="quiz" class="content-section">
+            <h2>Test Your Understanding</h2>
+
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    <h3>Question 1: What is a constructor?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="a" onchange="checkAnswer(1, 'a')">
+                            A system that is consumed when it causes a transformation
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="b" onchange="checkAnswer(1, 'b')">
+                            A system that causes a transformation but emerges unchanged and can do it again
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="c" onchange="checkAnswer(1, 'c')">
+                            A system that only exists at the molecular level
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="d" onchange="checkAnswer(1, 'd')">
+                            A system that requires no energy to operate
+                        </label>
+                    </div>
+                    <div id="feedback-1" class="feedback"></div>
+                </div>
+
+                <div class="quiz-question">
+                    <h3>Question 2: Which of the following is NOT one of the five essential components of a capability?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="a" onchange="checkAnswer(2, 'a')">
+                            Information/Knowledge
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="b" onchange="checkAnswer(2, 'b')">
+                            Motivation
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="c" onchange="checkAnswer(2, 'c')">
+                            Energy/Resources
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="d" onchange="checkAnswer(2, 'd')">
+                            Context-Recognition
+                        </label>
+                    </div>
+                    <div id="feedback-2" class="feedback"></div>
+                </div>
+
+                <div class="quiz-question">
+                    <h3>Question 3: In capability development, what is the correct order of stages?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="a" onchange="checkAnswer(3, 'a')">
+                            Automatization → Refinement → Assembly
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="b" onchange="checkAnswer(3, 'b')">
+                            Assembly → Refinement → Automatization
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="c" onchange="checkAnswer(3, 'c')">
+                            Refinement → Assembly → Automatization
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="d" onchange="checkAnswer(3, 'd')">
+                            All stages happen simultaneously
+                        </label>
+                    </div>
+                    <div id="feedback-3" class="feedback"></div>
+                </div>
+
+                <div class="quiz-question">
+                    <h3>Question 4: What makes a parallel network more robust than a sequential network?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="a" onchange="checkAnswer(4, 'a')">
+                            It's faster
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="b" onchange="checkAnswer(4, 'b')">
+                            Multiple constructors can fail without destroying the whole system
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="c" onchange="checkAnswer(4, 'c')">
+                            It requires less energy
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="d" onchange="checkAnswer(4, 'd')">
+                            It's easier to build
+                        </label>
+                    </div>
+                    <div id="feedback-4" class="feedback"></div>
+                </div>
+
+                <div class="quiz-question">
+                    <h3>Question 5: What is the difference between task-achieving and constitutive capabilities?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q5" value="a" onchange="checkAnswer(5, 'a')">
+                            Task-achieving capabilities are individual; constitutive are collective
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q5" value="b" onchange="checkAnswer(5, 'b')">
+                            Task-achieving brings about specific outcomes; constitutive maintains systems in balance
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q5" value="c" onchange="checkAnswer(5, 'c')">
+                            Task-achieving is conscious; constitutive is unconscious
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q5" value="d" onchange="checkAnswer(5, 'd')">
+                            There is no real difference
+                        </label>
+                    </div>
+                    <div id="feedback-5" class="feedback"></div>
+                </div>
+
+                <div class="quiz-question">
+                    <h3>Question 6: Why did the Green Belt Movement succeed as a capability network?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q6" value="a" onchange="checkAnswer(6, 'a')">
+                            It focused on only one capability at a time
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q6" value="b" onchange="checkAnswer(6, 'b')">
+                            It built multiple interconnected capabilities with positive feedback loops and redundancy
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q6" value="c" onchange="checkAnswer(6, 'c')">
+                            It required everyone to have identical values
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q6" value="d" onchange="checkAnswer(6, 'd')">
+                            It depended entirely on one leader
+                        </label>
+                    </div>
+                    <div id="feedback-6" class="feedback"></div>
+                </div>
+            </div>
+
+            <div id="quiz-score" class="result-box" style="margin-top: 30px; text-align: center;">
+                <h3>Your Progress</h3>
+                <p id="score-display">Answer questions to see your score</p>
+            </div>
+        </div>
+    </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Smooth scroll for nav links
-            document.querySelectorAll('header nav a').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-
-            // Performance Chart
-            const perfCtx = document.getElementById('performanceChart').getContext('2d');
-            new Chart(perfCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Complex Dilemmas', 'Adaptation', 'Innovation', 'Stakeholder Satisfaction'],
-                    datasets: [{
-                        label: '% Superior Performance of Diverse Teams',
-                        data: [23, 40, 35, 52],
-                        backgroundColor: 'rgba(79, 70, 229, 0.6)',
-                        borderColor: 'rgba(79, 70, 229, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    maintainAspectRatio: false,
-                    scales: { y: { beginAtZero: true, max: 60, ticks: { callback: value => value + '%' } } },
-                    plugins: { legend: { display: false } }
-                }
-            });
-
-            // PRF Details
-            const prfDetails = {
-                b: { title: 'Belief System (B)', text: "Your probability assessments and confidence levels about moral propositions, with measurable neural correlates in prefrontal regions." },
-                r: { title: 'Rule System (R)', text: "Your procedural knowledge for navigating ethical situations, with weighted decision procedures that activate based on context." },
-                o: { title: 'Ontological System (O)', text: "Your fundamental categories for understanding moral reality—concepts of personhood, responsibility, harm, and justice." },
-                a: { title: 'Authenticity System (A+)', text: "Your standards for evaluating alignment with your core identity, including your Identity Kernel (IK), the invariant structures of your ethical self." },
-                c: { title: 'Coordination Capabilities (C)', text: "Your empirically assessed skills for working with others on ethical challenges, including perspective-taking and conflict resolution." },
-                uev: { title: 'Unified Experience Vector (UEV)', text: "The simultaneous, measurable integration of your Global Feeling Tone, Emotional Motivation Vector, Rational Deliberation Vector, and Action Readiness Vector." }
-            };
-
-            const prfDetailTitle = document.getElementById('prf-detail-title');
-            const prfDetailText = document.getElementById('prf-detail-text');
-            document.querySelectorAll('.interactive-card[id^="prf-card-"]').forEach(card => {
-                card.addEventListener('click', () => {
-                    document.querySelectorAll('.interactive-card[id^="prf-card-"]').forEach(c => c.classList.remove('active'));
-                    card.classList.add('active');
-                    const key = card.id.split('-')[2];
-                    prfDetailTitle.innerText = prfDetails[key].title;
-                    prfDetailText.innerText = prfDetails[key].text;
-                });
-            });
-
-            // Logic Toolkit Tabs
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const tab = btn.dataset.tab;
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    tabContents.forEach(content => {
-                        if (content.id === `tab-content-${tab}`) {
-                            content.classList.remove('hidden');
-                        } else {
-                            content.classList.add('hidden');
-                        }
-                    });
-                });
-            });
+        // Tab navigation
+        function showTab(tabName) {
+            // Hide all content sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
             
-            // ATCF Chart
-            const atcfCtx = document.getElementById('atcfChart').getContext('2d');
-            new Chart(atcfCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Historical Continuity (HC)', 'Present Integration (PI)', 'Prospective Coherence (PC)', 'Meta-Constructor Capacity (MCC)'],
-                    datasets: [{
-                        label: 'ATCF Components',
-                        data: [25, 25, 25, 25],
-                        backgroundColor: ['rgba(79, 70, 229, 0.7)', 'rgba(30, 64, 175, 0.7)', 'rgba(129, 140, 248, 0.7)', 'rgba(199, 210, 254, 0.7)'],
-                        borderColor: '#f1f5f9',
-                        borderWidth: 2
-                    }]
-                },
-                options: { maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
-            });
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+            
+            // Show selected section
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-            // Cartography Steps
-            const stepDetails = {
-                '1': { title: '1. Cross-Scale Analysis', text: 'Map the coordination requirements across all levels, from individual developers to international bodies. Identify how actions at one scale impact others.' },
-                '2': { title: '2. PRF Proposition Development', text: 'Instead of abstract principles like "AI should be fair," define the specific capabilities development teams must have in their Belief, Rule, and other PRF systems to detect and mitigate bias.' },
-                '3': { title: '3. Strategic Analysis (ATL)', text: 'Use Alternating-Time Temporal Logic to ask: "Does humanity have coalition strategies to ensure ethical AI development, even with conflicting interests and external pressures?" This moves from hope to strategy.' },
-                '4': { title: '4. Agency Assessment (STIT)', text: 'Use STIT logic to identify which specific agents (e.g., a lead engineer, a safety board) have the actual power to "see to it that" an ethical constraint is implemented, clarifying responsibility.' },
-                '5': { title: '5. Temporal Coherence Check (ATCF)', text: 'Assess whether the proposed guidelines will enhance or fragment the long-term ethical coherence of the stakeholders. Will these rules support authentic development or force inauthentic compliance?' },
-                '6': { title: '6. Game-Theoretic Validation', text: 'Test the proposed guidelines in a simulated "game" against serious challenges (e.g., market competition, national security concerns) to ensure they form a "winning strategy" for ethical AI.' }
-            };
+        // Network type selection
+        function showNetworkInfo(type) {
+            // Hide all network info boxes
+            const boxes = document.querySelectorAll('[id^="network-"]');
+            boxes.forEach(box => box.classList.remove('show'));
+            
+            // Remove selected class from all network types
+            const types = document.querySelectorAll('.network-type');
+            types.forEach(t => t.classList.remove('selected'));
+            
+            // Show selected network info
+            document.getElementById('network-' + type).classList.add('show');
+            
+            // Add selected class to clicked type
+            event.target.classList.add('selected');
+        }
 
-            const stepItems = document.querySelectorAll('.step-item');
-            const stepDetailTitle = document.getElementById('step-detail-title');
-            const stepDetailText = document.getElementById('step-detail-text');
+        // Capability Builder Analysis
+        function analyzeCapability() {
+            const transformation = document.getElementById('transformation').value;
+            const capabilityType = document.getElementById('capability-type').value;
+            const reliability = document.getElementById('reliability').value;
+            const stage = document.getElementById('development-stage').value;
+            const constraint = document.getElementById('constraint').value;
 
-            function updateStepView(step) {
-                 stepItems.forEach(item => item.classList.remove('active'));
-                 document.getElementById(`step-${step}`).classList.add('active');
-                 stepDetailTitle.innerText = stepDetails[step].title;
-                 stepDetailText.innerText = stepDetails[step].text;
+            if (!transformation || !capabilityType || !stage) {
+                alert('Please fill in at least the transformation, capability type, and development stage fields.');
+                return;
             }
 
-            stepItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    const step = item.id.split('-')[1];
-                    updateStepView(step);
-                });
-            });
-            updateStepView('1');
-        });
-    </script>
-</body>
-</html>
+            let analysis = `<h3>Analysis Results</h3>`;
+            
+            analysis += `<div class="key-point">`;
+            analysis += `<h4>Your Capability:</h4>`;
+            analysis += `<p><strong>Transformation:</strong> ${transformation}</p>`;
+            analysis += `<p><strong>Type:</strong> ${capabilityType === 'task' ? 'Task-achieving' : capabilityType === 'constitutive' ? 'Constitutive' : 'Both task-achieving and constitutive'}</p>`;
+            
+            if (reliability) {
+                analysis += `<p><strong>Current Reliability:</strong> ${reliability}%</p>`;
+            }
+            analysis += `</div>`;
 
+            // Stage-specific guidance
+            analysis += `<div class="definition-box">`;
+            analysis += `<h4>Development Stage: ${stage.charAt(0).toUpperCase() + stage.slice(1)}</h4>`;
+            
+            if (stage === 'none') {
+                analysis += `<p>You haven't built this constructor yet. Focus on:</p>`;
+                analysis += `<ul>`;
+                analysis += `<li><strong>Finding models:</strong> Who has this capability? What resources exist?</li>`;
+                analysis += `<li><strong>Getting substrates:</strong> What can you practice on?</li>`;
+                analysis += `<li><strong>Initial attempts:</strong> Try the transformation, expect failures</li>`;
+                analysis += `<li><strong>Guided instruction:</strong> Find teachers, courses, or frameworks</li>`;
+                analysis += `</ul>`;
+            } else if (stage === 'assembly') {
+                analysis += `<p>You're in the initial learning phase. This is normal and expected! Focus on:</p>`;
+                analysis += `<ul>`;
+                analysis += `<li><strong>High volume practice:</strong> Many attempts build the constructor</li>`;
+                analysis += `<li><strong>Feedback:</strong> How do you know if transformation succeeded?</li>`;
+                analysis += `<li><strong>Pattern recognition:</strong> What works? What doesn't?</li>`;
+                analysis += `<li><strong>Patience:</strong> Weak constructors become strong through repetition</li>`;
+                analysis += `</ul>`;
+            } else if (stage === 'refinement') {
+                analysis += `<p>You're making progress! The constructor is forming. Focus on:</p>`;
+                analysis += `<ul>`;
+                analysis += `<li><strong>Consistency:</strong> Regular practice to strengthen pathways</li>`;
+                analysis += `<li><strong>Varied contexts:</strong> Practice in different situations to build robustness</li>`;
+                analysis += `<li><strong>Error correction:</strong> Notice failures and adjust</li>`;
+                analysis += `<li><strong>Efficiency:</strong> Can you do it faster? With less effort?</li>`;
+                analysis += `</ul>`;
+            } else if (stage === 'automatization') {
+                analysis += `<p>You have a well-developed capability! Focus on:</p>`;
+                analysis += `<ul>`;
+                analysis += `<li><strong>Maintenance:</strong> Continue using it (use it or lose it)</li>`;
+                analysis += `<li><strong>Composition:</strong> Combine with other capabilities for complex tasks</li>`;
+                analysis += `<li><strong>Teaching:</strong> Help others develop this capability</li>`;
+                analysis += `<li><strong>Refinement:</strong> Even experts can improve</li>`;
+                analysis += `</ul>`;
+            }
+            analysis += `</div>`;
+
+            // Constraint-specific guidance
+            if (constraint) {
+                analysis += `<div class="key-point">`;
+                analysis += `<h4>Primary Constraint: ${getConstraintName(constraint)}</h4>`;
+                analysis += `<p>${getConstraintGuidance(constraint)}</p>`;
+                analysis += `</div>`;
+            }
+
+            // Component recommendations
+            analysis += `<div class="definition-box">`;
+            analysis += `<h4>Next Steps for Development:</h4>`;
+            analysis += `<ol>`;
+            analysis += `<li><strong>Identify missing components:</strong> Review each of the five components you entered. Which are weakest?</li>`;
+            analysis += `<li><strong>Design practice regime:</strong> What substrates can you practice on regularly?</li>`;
+            analysis += `<li><strong>Establish feedback:</strong> How will you know if you're improving?</li>`;
+            analysis += `<li><strong>Build supporting capabilities:</strong> What lower-level capabilities do you need first?</li>`;
+            analysis += `<li><strong>Track progress:</strong> Measure reliability over time</li>`;
+            analysis += `</ol>`;
+            analysis += `</div>`;
+
+            document.getElementById('analysis-result').innerHTML = analysis;
+            document.getElementById('analysis-result').classList.add('show');
+        }
+
+        function getConstraintName(constraint) {
+            const names = {
+                'info': 'Missing Information/Knowledge',
+                'physical': 'Lack of Physical Substrate',
+                'energy': 'Insufficient Resources/Energy',
+                'control': 'Poor Control/Regulation',
+                'context': 'Context Recognition Issues',
+                'substrate': 'No Appropriate Substrates',
+                'feedback': 'Inadequate Feedback'
+            };
+            return names[constraint] || constraint;
+        }
+
+        function getConstraintGuidance(constraint) {
+            const guidance = {
+                'info': 'Focus on acquiring knowledge. Find resources: books, courses, experts, tutorials. Study how others perform this transformation. Understanding the "how" is crucial for building the constructor.',
+'physical': 'You need to build or access the physical infrastructure. This might mean: training your body/brain, acquiring tools, building infrastructure, or partnering with those who have it.',
+'energy': 'Secure the resources needed: time, money, attention, materials. Consider: Can you allocate more? Can you find funding? Can you make the process more efficient to require less?',
+'control': 'Develop better regulation mechanisms. Work on: recognizing when to activate the capability, inhibiting it when inappropriate, managing the process, building executive function or governance structures.',
+'context': 'Improve your ability to recognize the right conditions. Practice: noticing relevant cues, distinguishing appropriate from inappropriate contexts, pattern recognition, sensitivity to situational factors.',
+'substrate': 'Find or create opportunities to practice. Seek: real situations, simulations, practice partners, cases to work on. Without substrates, the constructor cannot develop.',
+'feedback': 'Establish clear feedback mechanisms. You need: immediate knowledge of results, external assessment (teachers, coaches, metrics), comparison to standards, reflection on what works and what doesn't.'
+};
+return guidance[constraint] || 'Focus on addressing this constraint systematically.';
+}
+// Quiz functionality
+    const quizAnswers = {
+        1: 'b',
+        2: 'b',
+        3: 'b',
+        4: 'b',
+        5: 'b',
+        6: 'b'
+    };
+
+    const quizExplanations = {
+        1: {
+            correct: 'Correct! A constructor causes transformations but remains unchanged and available for repeated use. This is the key property that makes capabilities persistent and reliable.',
+            incorrect: 'Not quite. A constructor is special because it causes a transformation but emerges unchanged and can do it again. It\'s like a catalyst - it enables change without being consumed.'
+        },
+        2: {
+            correct: 'Correct! While motivation matters for capability use, the five essential components are: Information/Knowledge, Physical/Material, Energy/Resources, Control/Regulation, and Context-Recognition.',
+            incorrect: 'Not quite. The five essential components are: Information/Knowledge, Physical/Material, Energy/Resources, Control/Regulation, and Context-Recognition. Motivation isn\'t one of the core structural components.'
+        },
+        3: {
+            correct: 'Correct! Capabilities develop through Assembly (initial weak constructor), then Refinement (practice strengthens it), then Automatization (becomes efficient and reliable).',
+            incorrect: 'Not quite. The correct order is Assembly → Refinement → Automatization. You first build a weak constructor, then strengthen it through practice, then it becomes automatic.'
+        },
+        4: {
+            correct: 'Correct! Parallel networks have redundancy - many constructors can fail and the system still functions because others continue operating. Sequential networks fail if any link breaks.',
+            incorrect: 'Not quite. Parallel networks are robust because of redundancy - if many constructors fail, some still succeed. In contrast, sequential networks break if any single constructor fails.'
+        },
+        5: {
+            correct: 'Correct! Task-achieving capabilities bring about specific goal states (like building a house), while constitutive capabilities maintain systems in operational balance (like body temperature regulation).',
+            incorrect: 'Not quite. Task-achieving capabilities bring about specific outcomes with clear endpoints, while constitutive capabilities maintain ongoing system balance (like homeostasis).'
+        },
+        6: {
+            correct: 'Correct! The Green Belt Movement succeeded by building interconnected capabilities that reinforced each other, with thousands of groups providing redundancy and distributed operation.',
+            incorrect: 'Not quite. The movement succeeded by building multiple interconnected capabilities (environmental, economic, political, social, cognitive) with positive feedback loops and redundancy through thousands of groups.'
+        }
+    };
+
+    let correctAnswers = 0;
+    let totalAnswered = 0;
+    const answered = new Set();
+
+    function checkAnswer(questionNum, answer) {
+        if (answered.has(questionNum)) {
+            // Already answered, don't count again but update display
+            updateAnswerDisplay(questionNum, answer);
+            return;
+        }
+
+        answered.add(questionNum);
+        totalAnswered++;
+
+        const isCorrect = answer === quizAnswers[questionNum];
+        if (isCorrect) {
+            correctAnswers++;
+        }
+
+        updateAnswerDisplay(questionNum, answer);
+        updateScore();
+    }
+
+    function updateAnswerDisplay(questionNum, answer) {
+        const isCorrect = answer === quizAnswers[questionNum];
+        const feedback = document.getElementById(`feedback-${questionNum}`);
+        const options = document.querySelectorAll(`input[name="q${questionNum}"]`);
+        
+        // Update option styling
+        options.forEach(option => {
+            const label = option.parentElement;
+            label.classList.remove('correct', 'incorrect');
+            
+            if (option.checked) {
+                if (isCorrect) {
+                    label.classList.add('correct');
+                } else {
+                    label.classList.add('incorrect');
+                }
+            }
+            
+            // Always show the correct answer
+            if (option.value === quizAnswers[questionNum]) {
+                label.classList.add('correct');
+            }
+            
+            // Disable all options after answering
+            option.disabled = true;
+        });
+
+        // Show feedback
+        feedback.className = 'feedback show ' + (isCorrect ? 'correct' : 'incorrect');
+        feedback.innerHTML = isCorrect ? quizExplanations[questionNum].correct : quizExplanations[questionNum].incorrect;
+    }
+
+    function updateScore() {
+        const scoreDisplay = document.getElementById('score-display');
+        const percentage = totalAnswered > 0 ? Math.round((correctAnswers / totalAnswered) * 100) : 0;
+        
+        let message = `<h3 style="font-size: 2em; margin: 20px 0;">${correctAnswers} / ${totalAnswered} Correct</h3>`;
+        message += `<p style="font-size: 1.5em; color: #667eea; font-weight: bold;">${percentage}%</p>`;
+        
+        if (totalAnswered === 6) {
+            if (percentage === 100) {
+                message += `<p style="margin-top: 20px; color: #28a745; font-weight: bold;">🎉 Perfect score! You have a strong understanding of constructor theory and capabilities!</p>`;
+            } else if (percentage >= 80) {
+                message += `<p style="margin-top: 20px; color: #28a745; font-weight: bold;">✅ Great work! You understand the core concepts well.</p>`;
+            } else if (percentage >= 60) {
+                message += `<p style="margin-top: 20px; color: #ffc107; font-weight: bold;">📚 Good effort! Review the sections on the topics you missed.</p>`;
+            } else {
+                message += `<p style="margin-top: 20px; color: #dc3545; font-weight: bold;">📖 Keep studying! Go back through the content sections to strengthen your understanding.</p>`;
+            }
+        }
+        
+        scoreDisplay.innerHTML = message;
+        document.getElementById('quiz-score').classList.add('show');
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set initial active tab
+        showTab('overview');
+    });
+</script></body>
+</html>
+```
