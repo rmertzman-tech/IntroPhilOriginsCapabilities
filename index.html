@@ -478,14 +478,14 @@
         </header>
 
         <nav class="nav-tabs">
-            <button class="tab-button active" onclick="showTab('overview')">Overview</button>
-            <button class="tab-button" onclick="showTab('definition')">What is a Capability?</button>
-            <button class="tab-button" onclick="showTab('structure')">Structure</button>
-            <button class="tab-button" onclick="showTab('development')">Development</button>
-            <button class="tab-button" onclick="showTab('networks')">Networks</button>
-            <button class="tab-button" onclick="showTab('applications')">Applications</button>
-            <button class="tab-button" onclick="showTab('builder')">Capability Builder</button>
-            <button class="tab-button" onclick="showTab('quiz')">Test Understanding</button>
+            <button class="tab-button active" onclick="showTab('overview', this)">Overview</button>
+            <button class="tab-button" onclick="showTab('definition', this)">What is a Capability?</button>
+            <button class="tab-button" onclick="showTab('structure', this)">Structure</button>
+            <button class="tab-button" onclick="showTab('development', this)">Development</button>
+            <button class="tab-button" onclick="showTab('networks', this)">Networks</button>
+            <button class="tab-button" onclick="showTab('applications', this)">Applications</button>
+            <button class="tab-button" onclick="showTab('builder', this)">Capability Builder</button>
+            <button class="tab-button" onclick="showTab('quiz', this)">Test Understanding</button>
         </nav>
 
         <!-- Overview Section -->
@@ -826,635 +826,632 @@
 
             <div class="network-viz">
                 <h4>Select a network type to learn more:</h4>
-                <div class="network-type" onclick="showNetworkInfo('sequential')">
+                <div class="network-type" onclick="showNetworkInfo('sequential', this)">
                     <strong>Sequential Networks</strong><br>
                     <small>Pipeline Constructors</small>
                 </div>
-                <div class="network-type" onclick="showNetworkInfo('parallel')">
-                    <strong>Parallel Networks</strong><br>
-                    <small>Distributed Constructors</small</div>
-                <div class="network-type" onclick="showNetworkInfo('hierarchical')">
-                    <strong>Hierarchical Networks</strong><br>
-                    <small>Nested Constructors</small>
+                <div class="network-type" onclick="showNetworkInfo('parallel', this)"><strong>Parallel Networks</strong><br>
+<small>Distributed Constructors</small>
+</div>
+<div class="network-type" onclick="showNetworkInfo('hierarchical', this)">
+<strong>Hierarchical Networks</strong><br>
+<small>Nested Constructors</small>
+</div>
+<div class="network-type" onclick="showNetworkInfo('complex', this)">
+<strong>Complex Networks</strong><br>
+<small>Interconnected Constructors</small>
+</div><div id="network-sequential" class="result-box">
+                <h4>Sequential Networks (Pipeline)</h4>
+                <p><strong>Structure:</strong> Constructor₁ → Constructor₂ → Constructor₃ → Final product</p>
+                <div class="constructor-diagram">
+                    <div class="flow-item">Raw Materials</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-item">C₁: Mining</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-item">C₂: Smelting</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-item">C₃: Fabrication</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-item">Finished Product</div>
                 </div>
-                <div class="network-type" onclick="showNetworkInfo('complex')">
-                    <strong>Complex Networks</strong><br>
-                    <small>Interconnected Constructors</small>
-                </div>
-
-                <div id="network-sequential" class="result-box">
-                    <h4>Sequential Networks (Pipeline)</h4>
-                    <p><strong>Structure:</strong> Constructor₁ → Constructor₂ → Constructor₃ → Final product</p>
-                    <div class="constructor-diagram">
-                        <div class="flow-item">Raw Materials</div>
-                        <span class="flow-arrow">→</span>
-                        <div class="flow-item">C₁: Mining</div>
-                        <span class="flow-arrow">→</span>
-                        <div class="flow-item">C₂: Smelting</div>
-                        <span class="flow-arrow">→</span>
-                        <div class="flow-item">C₃: Fabrication</div>
-                        <span class="flow-arrow">→</span>
-                        <div class="flow-item">Finished Product</div>
-                    </div>
-                    <p><strong>Example:</strong> Manufacturing pipeline</p>
-                    <p><strong>Coordination:</strong> Output of Cᵢ must be appropriate substrate for Cᵢ₊₁</p>
-                    <p><strong>Reliability:</strong> Network reliability = Product of each constructor's reliability</p>
-                    <p><strong>Challenge:</strong> If any constructor fails, whole transformation fails</p>
-                    <p><strong>Solution:</strong> Add redundancy at critical steps</p>
-                </div>
-
-                <div id="network-parallel" class="result-box">
-                    <h4>Parallel Networks (Distributed)</h4>
-                    <p><strong>Structure:</strong> Multiple constructors perform same/similar transformations simultaneously</p>
-                    <p><strong>Example:</strong> Immune system—billions of immune cells distributed throughout body, each can recognize and neutralize pathogens</p>
-                    <p><strong>Coordination:</strong> Minimal—constructors operate independently</p>
-                    <p><strong>Reliability:</strong> Very high even if individual constructors somewhat unreliable (1 - ∏(1 - reliability of each))</p>
-                    <p><strong>Advantage:</strong> Robust to local failures—if many fail, some still succeed</p>
-                </div>
-
-                <div id="network-hierarchical" class="result-box">
-                    <h4>Hierarchical Networks (Nested)</h4>
-                    <p><strong>Structure:</strong> Higher-level constructors composed of lower-level constructors</p>
-                    <p><strong>Example:</strong> Language production</p>
-                    <ul style="text-align: left;">
-                        <li><strong>Level 1:</strong> Phoneme production (motor control of vocal tract)</li>
-                        <li><strong>Level 2:</strong> Word production (sequencing phonemes)</li>
-                        <li><strong>Level 3:</strong> Sentence production (applying grammar rules)</li>
-                        <li><strong>Level 4:</strong> Discourse production (maintaining coherence, achieving goals)</li>
-                    </ul>
-                    <p><strong>Coordination:</strong> Higher levels activate/coordinate lower levels</p>
-                    <p><strong>Development strategy:</strong> Build reliable lower levels first, then construct higher levels</p>
-                </div>
-
-                <div id="network-complex" class="result-box">
-                    <h4>Complex Networks (Interconnected)</h4>
-                    <p><strong>Structure:</strong> Multiple constructors with complex, bidirectional relationships</p>
-                    <p><strong>Example:</strong> The brain—billions of neurons organized into circuits, regions, systems with feedback loops and modulatory systems</p>
-                    <p><strong>Coordination:</strong> Very complex—requires regulatory mechanisms, timing, synchronization</p>
-                    <p><strong>Reliability:</strong> Can be very high due to:</p>
-                    <ul style="text-align: left;">
-                        <li>Redundancy (many pathways to same outcome)</li>
-                        <li>Plasticity (network can reorganize if parts fail)</li>
-                        <li>Degeneracy (multiple structures can perform same function)</li>
-                    </ul>
-                    <p><strong>Emergent properties:</strong> Consciousness, reasoning, creativity not present in individual neurons</p>
-                </div>
+                <p><strong>Example:</strong> Manufacturing pipeline</p>
+                <p><strong>Coordination:</strong> Output of Cᵢ must be appropriate substrate for Cᵢ₊₁</p>
+                <p><strong>Reliability:</strong> Network reliability = Product of each constructor's reliability</p>
+                <p><strong>Challenge:</strong> If any constructor fails, whole transformation fails</p>
+                <p><strong>Solution:</strong> Add redundancy at critical steps</p>
             </div>
 
-            <h3>🌳 Case Study: Green Belt Movement (Wangari Maathai)</h3>
-            <div class="interactive-example">
-                <p><strong>Goal:</strong> Transform degraded, unjust society → Thriving, just society</p>
-                
-                <h4>Interconnected Capabilities Built:</h4>
-                <div class="component-grid">
-                    <div class="component-card">
-                        <h4>Environmental</h4>
-                        <p>Tree planting, nursery management, ecological restoration</p>
-                    </div>
-                    <div class="component-card">
-                        <h4>Economic</h4>
-                        <p>Income generation, resource management, market access</p>
-                    </div>
-                    <div class="component-card">
-                        <h4>Political</h4>
-                        <p>Organizing, advocacy, resistance, democratic participation</p>
-                    </div>
-                    <div class="component-card">
-                        <h4>Social</h4>
-                        <p>Community building, solidarity, mutual support</p>
-                    </div>
-                    <div class="component-card">
-                        <h4>Cognitive</h4>
-                        <p>Consciousness-raising, systems thinking, literacy</p>
-                    </div>
-                </div>
-
-                <div class="key-point">
-                    <h4>Why It Worked:</h4>
-                    <ul>
-                        <li><strong>Positive feedback loops:</strong> Success in one area strengthened others</li>
-                        <li><strong>Redundancy:</strong> Thousands of women's groups—movement robust to local failures</li>
-                        <li><strong>Distributed construction:</strong> Not dependent on single leader</li>
-                        <li><strong>Compatible capabilities:</strong> Different motivations, shared practice (tree-planting)</li>
-                    </ul>
-                    <p><strong>Result:</strong> 51 million trees planted, tens of thousands empowered, democratic transition supported</p>
-                </div>
+            <div id="network-parallel" class="result-box">
+                <h4>Parallel Networks (Distributed)</h4>
+                <p><strong>Structure:</strong> Multiple constructors perform same/similar transformations simultaneously</p>
+                <p><strong>Example:</strong> Immune system—billions of immune cells distributed throughout body, each can recognize and neutralize pathogens</p>
+                <p><strong>Coordination:</strong> Minimal—constructors operate independently</p>
+                <p><strong>Reliability:</strong> Very high even if individual constructors somewhat unreliable (1 - ∏(1 - reliability of each))</p>
+                <p><strong>Advantage:</strong> Robust to local failures—if many fail, some still succeed</p>
             </div>
 
-            <h3>Coordination Mechanisms</h3>
-            <table class="scale-table">
-                <thead>
-                    <tr>
-                        <th>Mechanism</th>
-                        <th>How It Works</th>
-                        <th>Examples</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Shared Substrates</strong></td>
-                        <td>Output of C₁ becomes input to C₂</td>
-                        <td>Metabolic pathways, manufacturing pipelines</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Signaling Systems</strong></td>
-                        <td>Constructors send/receive coordination signals</td>
-                        <td>Hormones, prices, language, APIs</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Hierarchical Control</strong></td>
-                        <td>Higher-level constructors activate/inhibit lower ones</td>
-                        <td>Executive function, management, government</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Distributed Consensus</strong></td>
-                        <td>No central controller; local interactions coordinate</td>
-                        <td>Ant colonies, markets, democracies</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Shared Rules/Protocols</strong></td>
-                        <td>Common standards enable coordination</td>
-                        <td>Social norms, communication protocols, traffic rules</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div id="network-hierarchical" class="result-box">
+                <h4>Hierarchical Networks (Nested)</h4>
+                <p><strong>Structure:</strong> Higher-level constructors composed of lower-level constructors</p>
+                <p><strong>Example:</strong> Language production</p>
+                <ul style="text-align: left;">
+                    <li><strong>Level 1:</strong> Phoneme production (motor control of vocal tract)</li>
+                    <li><strong>Level 2:</strong> Word production (sequencing phonemes)</li>
+                    <li><strong>Level 3:</strong> Sentence production (applying grammar rules)</li>
+                    <li><strong>Level 4:</strong> Discourse production (maintaining coherence, achieving goals)</li>
+                </ul>
+                <p><strong>Coordination:</strong> Higher levels activate/coordinate lower levels</p>
+                <p><strong>Development strategy:</strong> Build reliable lower levels first, then construct higher levels</p>
+            </div>
+
+            <div id="network-complex" class="result-box">
+                <h4>Complex Networks (Interconnected)</h4>
+                <p><strong>Structure:</strong> Multiple constructors with complex, bidirectional relationships</p>
+                <p><strong>Example:</strong> The brain—billions of neurons organized into circuits, regions, systems with feedback loops and modulatory systems</p>
+                <p><strong>Coordination:</strong> Very complex—requires regulatory mechanisms, timing, synchronization</p>
+                <p><strong>Reliability:</strong> Can be very high due to:</p>
+                <ul style="text-align: left;">
+                    <li>Redundancy (many pathways to same outcome)</li>
+                    <li>Plasticity (network can reorganize if parts fail)</li>
+                    <li>Degeneracy (multiple structures can perform same function)</li>
+                </ul>
+                <p><strong>Emergent properties:</strong> Consciousness, reasoning, creativity not present in individual neurons</p>
+            </div>
         </div>
 
-        <!-- Applications Section -->
-        <div id="applications" class="content-section">
-            <h2>Applications Across Domains</h2>
-
+        <h3>🌳 Case Study: Green Belt Movement (Wangari Maathai)</h3>
+        <div class="interactive-example">
+            <p><strong>Goal:</strong> Transform degraded, unjust society → Thriving, just society</p>
+            
+            <h4>Interconnected Capabilities Built:</h4>
             <div class="component-grid">
                 <div class="component-card">
-                    <h4>🎓 Education</h4>
-                    <p><strong>Traditional:</strong> Transfer information</p>
-                    <p><strong>Constructor view:</strong> Build capabilities through practice, feedback, scaffolding</p>
-                    <p><strong>Implication:</strong> Need repeated practice with appropriate substrates, not just lectures</p>
+                    <h4>Environmental</h4>
+                    <p>Tree planting, nursery management, ecological restoration</p>
                 </div>
-
                 <div class="component-card">
-                    <h4>🏢 Organizations</h4>
-                    <p><strong>View:</strong> Network of human and technological constructors</p>
-                    <p><strong>Failure modes:</strong> Constructor damage (key people leave), resource depletion, coordination failure</p>
-                    <p><strong>Success:</strong> Build, coordinate, and maintain capability networks</p>
+                    <h4>Economic</h4>
+                    <p>Income generation, resource management, market access</p>
                 </div>
-
                 <div class="component-card">
-                    <h4>✊ Social Movements</h4>
-                    <p><strong>Goal:</strong> Build capability networks for transformation</p>
-                    <p><strong>Strategy:</strong> Develop individual, collective, institutional, and cultural capabilities simultaneously</p>
-                    <p><strong>Success factors:</strong> Redundancy, positive feedback, strategic coordination</p>
+                    <h4>Political</h4>
+                    <p>Organizing, advocacy, resistance, democratic participation</p>
                 </div>
-
                 <div class="component-card">
-                    <h4>🏥 Public Health</h4>
-                    <p><strong>View:</strong> Building population-level constitutive capabilities</p>
-                    <p><strong>Examples:</strong> Vaccination (installing immune constructors), water treatment (ongoing safety transformation)</p>
-                    <p><strong>Focus:</strong> Prevention through capability building, not just treatment</p>
+                    <h4>Social</h4>
+                    <p>Community building, solidarity, mutual support</p>
                 </div>
-
                 <div class="component-card">
-                    <h4>🗳️ Democracy</h4>
-                    <p><strong>View:</strong> Distributed capability network requiring many functioning constructors</p>
-                    <p><strong>Requirements:</strong> Informed citizens, free press, fair elections, independent courts, democratic culture</p>
-                    <p><strong>Challenge:</strong> Continuous maintenance needed; can atrophy</p>
-                </div>
-
-                <div class="component-card">
-                    <h4>🌍 Climate Change</h4>
-                    <p><strong>Challenge:</strong> Global coordination problem</p>
-                    <p><strong>Need:</strong> Knowledge + Technology + Economic + Political + Cultural capabilities working together</p>
-                    <p><strong>Current gap:</strong> Have individual constructors, lack coordination mechanisms at scale</p>
+                    <h4>Cognitive</h4>
+                    <p>Consciousness-raising, systems thinking, literacy</p>
                 </div>
             </div>
 
-            <h3>Task-Achieving vs. Constitutive Capabilities</h3>
-            <div class="interactive-example">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div style="border: 3px solid #667eea; padding: 20px; border-radius: 10px;">
-                        <h4 style="color: #667eea;">Task-Achieving Capabilities</h4>
-                        <p><strong>Purpose:</strong> Bring about specific outcome state</p>
-                        <p><strong>Examples:</strong></p>
-                        <ul>
-                            <li>Building a house</li>
-                            <li>Solving a problem</li>
-                            <li>Writing a paper</li>
-                            <li>Organizing an event</li>
-                        </ul>
-                        <p><strong>Structure:</strong> Clear beginning and end</p>
-                        <p><strong>Success:</strong> Goal state achieved</p>
-                    </div>
-                    <div style="border: 3px solid #764ba2; padding: 20px; border-radius: 10px;">
-                        <h4 style="color: #764ba2;">Constitutive Capabilities</h4>
-                        <p><strong>Purpose:</strong> Keep system in operational range despite perturbations</p>
-                        <p><strong>Examples:</strong></p>
-                        <ul>
-                            <li>Body temperature regulation</li>
-                            <li>Immune function</li>
-                            <li>Social order maintenance</li>
-                            <li>Ecosystem stability</li>
-                        </ul>
-                        <p><strong>Structure:</strong> Ongoing transformation maintaining balance</p>
-                        <p><strong>Success:</strong> System remains functional</p>
-                    </div>
-                </div>
+            <div class="key-point">
+                <h4>Why It Worked:</h4>
+                <ul>
+                    <li><strong>Positive feedback loops:</strong> Success in one area strengthened others</li>
+                    <li><strong>Redundancy:</strong> Thousands of women's groups—movement robust to local failures</li>
+                    <li><strong>Distributed construction:</strong> Not dependent on single leader</li>
+                    <li><strong>Compatible capabilities:</strong> Different motivations, shared practice (tree-planting)</li>
+                </ul>
+                <p><strong>Result:</strong> 51 million trees planted, tens of thousands empowered, democratic transition supported</p>
             </div>
         </div>
 
-        <!-- Capability Builder Section -->
-        <div id="builder" class="content-section">
-            <h2>🛠️ Capability Builder Tool</h2>
-            
-            <div class="definition-box">
-                <p>Use this tool to analyze a capability you want to develop or understand. The framework will help you assess its current state and identify what's needed for development.</p>
+        <h3>Coordination Mechanisms</h3>
+        <table class="scale-table">
+            <thead>
+                <tr>
+                    <th>Mechanism</th>
+                    <th>How It Works</th>
+                    <th>Examples</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Shared Substrates</strong></td>
+                    <td>Output of C₁ becomes input to C₂</td>
+                    <td>Metabolic pathways, manufacturing pipelines</td>
+                </tr>
+                <tr>
+                    <td><strong>Signaling Systems</strong></td>
+                    <td>Constructors send/receive coordination signals</td>
+                    <td>Hormones, prices, language, APIs</td>
+                </tr>
+                <tr>
+                    <td><strong>Hierarchical Control</strong></td>
+                    <td>Higher-level constructors activate/inhibit lower ones</td>
+                    <td>Executive function, management, government</td>
+                </tr>
+                <tr>
+                    <td><strong>Distributed Consensus</strong></td>
+                    <td>No central controller; local interactions coordinate</td>
+                    <td>Ant colonies, markets, democracies</td>
+                </tr>
+                <tr>
+                    <td><strong>Shared Rules/Protocols</strong></td>
+                    <td>Common standards enable coordination</td>
+                    <td>Social norms, communication protocols, traffic rules</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Applications Section -->
+    <div id="applications" class="content-section">
+        <h2>Applications Across Domains</h2>
+
+        <div class="component-grid">
+            <div class="component-card">
+                <h4>🎓 Education</h4>
+                <p><strong>Traditional:</strong> Transfer information</p>
+                <p><strong>Constructor view:</strong> Build capabilities through practice, feedback, scaffolding</p>
+                <p><strong>Implication:</strong> Need repeated practice with appropriate substrates, not just lectures</p>
             </div>
 
-            <div class="capability-builder">
-                <div class="input-group">
-                    <label>What transformation do you want to cause reliably?</label>
-                    <input type="text" id="transformation" placeholder="e.g., Anxious students → Confident students; Conflict → Resolution">
-                </div>
+            <div class="component-card">
+                <h4>🏢 Organizations</h4>
+                <p><strong>View:</strong> Network of human and technological constructors</p>
+                <p><strong>Failure modes:</strong> Constructor damage (key people leave), resource depletion, coordination failure</p>
+                <p><strong>Success:</strong> Build, coordinate, and maintain capability networks</p>
+            </div>
 
-                <div class="input-group">
-                    <label>Is this capability:</label>
-                    <select id="capability-type">
-                        <option value="">Select...</option>
-                        <option value="task">Task-achieving (specific goal)</option>
-                        <option value="constitutive">Constitutive (ongoing maintenance)</option>
-                        <option value="both">Both</option>
-                    </select>
-                </div>
+            <div class="component-card">
+                <h4>✊ Social Movements</h4>
+                <p><strong>Goal:</strong> Build capability networks for transformation</p>
+                <p><strong>Strategy:</strong> Develop individual, collective, institutional, and cultural capabilities simultaneously</p>
+                <p><strong>Success factors:</strong> Redundancy, positive feedback, strategic coordination</p>
+            </div>
 
-                <h3>Assess the Five Components:</h3>
+            <div class="component-card">
+                <h4>🏥 Public Health</h4>
+                <p><strong>View:</strong> Building population-level constitutive capabilities</p>
+                <p><strong>Examples:</strong> Vaccination (installing immune constructors), water treatment (ongoing safety transformation)</p>
+                <p><strong>Focus:</strong> Prevention through capability building, not just treatment</p>
+            </div>
 
-                <div class="input-group">
-                    <label>1. Information/Knowledge Component</label>
-                    <textarea id="info-component" rows="3" placeholder="What knowledge or information is needed? Where is it stored?"></textarea>
-                </div>
+            <div class="component-card">
+                <h4>🗳️ Democracy</h4>
+                <p><strong>View:</strong> Distributed capability network requiring many functioning constructors</p>
+                <p><strong>Requirements:</strong> Informed citizens, free press, fair elections, independent courts, democratic culture</p>
+                <p><strong>Challenge:</strong> Continuous maintenance needed; can atrophy</p>
+            </div>
 
-                <div class="input-group">
-                    <label>2. Physical/Material Component</label>
-                    <textarea id="physical-component" rows="3" placeholder="What physical substrate implements this? (body, brain, tools, infrastructure)"></textarea>
-                </div>
-
-                <div class="input-group">
-                    <label>3. Energy/Resource Component</label>
-                    <textarea id="energy-component" rows="3" placeholder="What resources or energy are needed? (time, money, attention, fuel)"></textarea>
-                </div>
-
-                <div class="input-group">
-                    <label>4. Control/Regulation Component</label>
-                    <textarea id="control-component" rows="3" placeholder="How is activation controlled? What determines when this capability operates?"></textarea>
-                </div>
-
-                <div class="input-group">
-                    <label>5. Context-Recognition Component</label>
-                    <textarea id="context-component" rows="3" placeholder="How do you recognize when conditions are right? What signals trigger activation?"></textarea>
-                </div>
-
-                <h3>Current State Assessment:</h3>
-
-                <div class="input-group">
-                    <label>Current reliability (0-100%):</label>
-                    <input type="number" id="reliability" min="0" max="100" placeholder="How often does it work when you try?">
-                </div>
-
-                <div class="input-group">
-                    <label>Development stage:</label>
-                    <select id="development-stage">
-                        <option value="">Select...</option>
-                        <option value="none">Not yet started (no constructor)</option>
-                        <option value="assembly">Assembly (weak, unreliable)</option>
-                        <option value="refinement">Refinement (improving, still requires effort)</option>
-                        <option value="automatization">Automatization (reliable, efficient)</option>
-                    </select>
-                </div>
-
-                <div class="input-group">
-                    <label>What's the biggest constraint right now?</label>
-                    <select id="constraint">
-                        <option value="">Select...</option>
-                        <option value="info">Missing information/knowledge</option>
-                        <option value="physical">Lack of physical substrate (tools, infrastructure, trained body/brain)</option>
-                        <option value="energy">Insufficient resources/energy</option>
-                        <option value="control">Poor control/regulation</option>
-                        <option value="context">Can't recognize appropriate contexts</option>
-                        <option value="substrate">No appropriate substrates to practice on</option>
-                        <option value="feedback">Not getting useful feedback</option>
-                    </select>
-                </div>
-
-                <button class="analyze-btn" onclick="analyzeCapability()">Analyze Capability</button>
-
-                <div id="analysis-result" class="result-box">
-                    <!-- Results will be inserted here -->
-                </div>
+            <div class="component-card">
+                <h4>🌍 Climate Change</h4>
+                <p><strong>Challenge:</strong> Global coordination problem</p>
+                <p><strong>Need:</strong> Knowledge + Technology + Economic + Political + Cultural capabilities working together</p>
+                <p><strong>Current gap:</strong> Have individual constructors, lack coordination mechanisms at scale</p>
             </div>
         </div>
 
-        <!-- Quiz Section -->
-        <div id="quiz" class="content-section">
-            <h2>Test Your Understanding</h2>
-
-            <div class="quiz-container">
-                <div class="quiz-question">
-                    <h3>Question 1: What is a constructor?</h3>
-                    <div class="quiz-options">
-                        <label class="quiz-option">
-                            <input type="radio" name="q1" value="a" onchange="checkAnswer(1, 'a')">
-                            A system that is consumed when it causes a transformation
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q1" value="b" onchange="checkAnswer(1, 'b')">
-                            A system that causes a transformation but emerges unchanged and can do it again
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q1" value="c" onchange="checkAnswer(1, 'c')">
-                            A system that only exists at the molecular level
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q1" value="d" onchange="checkAnswer(1, 'd')">
-                            A system that requires no energy to operate
-                        </label>
-                    </div>
-                    <div id="feedback-1" class="feedback"></div>
+        <h3>Task-Achieving vs. Constitutive Capabilities</h3>
+        <div class="interactive-example">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div style="border: 3px solid #667eea; padding: 20px; border-radius: 10px;">
+                    <h4 style="color: #667eea;">Task-Achieving Capabilities</h4>
+                    <p><strong>Purpose:</strong> Bring about specific outcome state</p>
+                    <p><strong>Examples:</strong></p>
+                    <ul>
+                        <li>Building a house</li>
+                        <li>Solving a problem</li>
+                        <li>Writing a paper</li>
+                        <li>Organizing an event</li>
+                    </ul>
+                    <p><strong>Structure:</strong> Clear beginning and end</p>
+                    <p><strong>Success:</strong> Goal state achieved</p>
                 </div>
-
-                <div class="quiz-question">
-                    <h3>Question 2: Which of the following is NOT one of the five essential components of a capability?</h3>
-                    <div class="quiz-options">
-                        <label class="quiz-option">
-                            <input type="radio" name="q2" value="a" onchange="checkAnswer(2, 'a')">
-                            Information/Knowledge
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q2" value="b" onchange="checkAnswer(2, 'b')">
-                            Motivation
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q2" value="c" onchange="checkAnswer(2, 'c')">
-                            Energy/Resources
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q2" value="d" onchange="checkAnswer(2, 'd')">
-                            Context-Recognition
-                        </label>
-                    </div>
-                    <div id="feedback-2" class="feedback"></div>
+                <div style="border: 3px solid #764ba2; padding: 20px; border-radius: 10px;">
+                    <h4 style="color: #764ba2;">Constitutive Capabilities</h4>
+                    <p><strong>Purpose:</strong> Keep system in operational range despite perturbations</p>
+                    <p><strong>Examples:</strong></p>
+                    <ul>
+                        <li>Body temperature regulation</li>
+                        <li>Immune function</li>
+                        <li>Social order maintenance</li>
+                        <li>Ecosystem stability</li>
+                    </ul>
+                    <p><strong>Structure:</strong> Ongoing transformation maintaining balance</p>
+                    <p><strong>Success:</strong> System remains functional</p>
                 </div>
-
-                <div class="quiz-question">
-                    <h3>Question 3: In capability development, what is the correct order of stages?</h3>
-                    <div class="quiz-options">
-                        <label class="quiz-option">
-                            <input type="radio" name="q3" value="a" onchange="checkAnswer(3, 'a')">
-                            Automatization → Refinement → Assembly
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q3" value="b" onchange="checkAnswer(3, 'b')">
-                            Assembly → Refinement → Automatization
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q3" value="c" onchange="checkAnswer(3, 'c')">
-                            Refinement → Assembly → Automatization
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q3" value="d" onchange="checkAnswer(3, 'd')">
-                            All stages happen simultaneously
-                        </label>
-                    </div>
-                    <div id="feedback-3" class="feedback"></div>
-                </div>
-
-                <div class="quiz-question">
-                    <h3>Question 4: What makes a parallel network more robust than a sequential network?</h3>
-                    <div class="quiz-options">
-                        <label class="quiz-option">
-                            <input type="radio" name="q4" value="a" onchange="checkAnswer(4, 'a')">
-                            It's faster
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q4" value="b" onchange="checkAnswer(4, 'b')">
-                            Multiple constructors can fail without destroying the whole system
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q4" value="c" onchange="checkAnswer(4, 'c')">
-                            It requires less energy
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q4" value="d" onchange="checkAnswer(4, 'd')">
-                            It's easier to build
-                        </label>
-                    </div>
-                    <div id="feedback-4" class="feedback"></div>
-                </div>
-
-                <div class="quiz-question">
-                    <h3>Question 5: What is the difference between task-achieving and constitutive capabilities?</h3>
-                    <div class="quiz-options">
-                        <label class="quiz-option">
-                            <input type="radio" name="q5" value="a" onchange="checkAnswer(5, 'a')">
-                            Task-achieving capabilities are individual; constitutive are collective
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q5" value="b" onchange="checkAnswer(5, 'b')">
-                            Task-achieving brings about specific outcomes; constitutive maintains systems in balance
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q5" value="c" onchange="checkAnswer(5, 'c')">
-                            Task-achieving is conscious; constitutive is unconscious
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q5" value="d" onchange="checkAnswer(5, 'd')">
-                            There is no real difference
-                        </label>
-                    </div>
-                    <div id="feedback-5" class="feedback"></div>
-                </div>
-
-                <div class="quiz-question">
-                    <h3>Question 6: Why did the Green Belt Movement succeed as a capability network?</h3>
-                    <div class="quiz-options">
-                        <label class="quiz-option">
-                            <input type="radio" name="q6" value="a" onchange="checkAnswer(6, 'a')">
-                            It focused on only one capability at a time
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q6" value="b" onchange="checkAnswer(6, 'b')">
-                            It built multiple interconnected capabilities with positive feedback loops and redundancy
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q6" value="c" onchange="checkAnswer(6, 'c')">
-                            It required everyone to have identical values
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q6" value="d" onchange="checkAnswer(6, 'd')">
-                            It depended entirely on one leader
-                        </label>
-                    </div>
-                    <div id="feedback-6" class="feedback"></div>
-                </div>
-            </div>
-
-            <div id="quiz-score" class="result-box" style="margin-top: 30px; text-align: center;">
-                <h3>Your Progress</h3>
-                <p id="score-display">Answer questions to see your score</p>
             </div>
         </div>
     </div>
 
-    <script>
-        // Tab navigation
-        function showTab(tabName) {
-            // Hide all content sections
-            const sections = document.querySelectorAll('.content-section');
-            sections.forEach(section => section.classList.remove('active'));
-            
-            // Remove active class from all buttons
-            const buttons = document.querySelectorAll('.tab-button');
-            buttons.forEach(button => button.classList.remove('active'));
-            
-            // Show selected section
-            document.getElementById(tabName).classList.add('active');
-            
-            // Add active class to clicked button
-            event.target.classList.add('active');
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+    <!-- Capability Builder Section -->
+    <div id="builder" class="content-section">
+        <h2>🛠️ Capability Builder Tool</h2>
+        
+        <div class="definition-box">
+            <p>Use this tool to analyze a capability you want to develop or understand. The framework will help you assess its current state and identify what's needed for development.</p>
+        </div>
+
+        <div class="capability-builder">
+            <div class="input-group">
+                <label>What transformation do you want to cause reliably?</label>
+                <input type="text" id="transformation" placeholder="e.g., Anxious students → Confident students; Conflict → Resolution">
+            </div>
+
+            <div class="input-group">
+                <label>Is this capability:</label>
+                <select id="capability-type">
+                    <option value="">Select...</option>
+                    <option value="task">Task-achieving (specific goal)</option>
+                    <option value="constitutive">Constitutive (ongoing maintenance)</option>
+                    <option value="both">Both</option>
+                </select>
+            </div>
+
+            <h3>Assess the Five Components:</h3>
+
+            <div class="input-group">
+                <label>1. Information/Knowledge Component</label>
+                <textarea id="info-component" rows="3" placeholder="What knowledge or information is needed? Where is it stored?"></textarea>
+            </div>
+
+            <div class="input-group">
+                <label>2. Physical/Material Component</label>
+                <textarea id="physical-component" rows="3" placeholder="What physical substrate implements this? (body, brain, tools, infrastructure)"></textarea>
+            </div>
+
+            <div class="input-group">
+                <label>3. Energy/Resource Component</label>
+                <textarea id="energy-component" rows="3" placeholder="What resources or energy are needed? (time, money, attention, fuel)"></textarea>
+            </div>
+
+            <div class="input-group">
+                <label>4. Control/Regulation Component</label>
+                <textarea id="control-component" rows="3" placeholder="How is activation controlled? What determines when this capability operates?"></textarea>
+            </div>
+
+            <div class="input-group">
+                <label>5. Context-Recognition Component</label>
+                <textarea id="context-component" rows="3" placeholder="How do you recognize when conditions are right? What signals trigger activation?"></textarea>
+            </div>
+
+            <h3>Current State Assessment:</h3>
+
+            <div class="input-group">
+                <label>Current reliability (0-100%):</label>
+                <input type="number" id="reliability" min="0" max="100" placeholder="How often does it work when you try?">
+            </div>
+
+            <div class="input-group">
+                <label>Development stage:</label>
+                <select id="development-stage">
+                    <option value="">Select...</option>
+                    <option value="none">Not yet started (no constructor)</option>
+                    <option value="assembly">Assembly (weak, unreliable)</option>
+                    <option value="refinement">Refinement (improving, still requires effort)</option>
+                    <option value="automatization">Automatization (reliable, efficient)</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>What's the biggest constraint right now?</label>
+                <select id="constraint">
+                    <option value="">Select...</option>
+                    <option value="info">Missing information/knowledge</option>
+                    <option value="physical">Lack of physical substrate (tools, infrastructure, trained body/brain)</option>
+                    <option value="energy">Insufficient resources/energy</option>
+                    <option value="control">Poor control/regulation</option>
+                    <option value="context">Can't recognize appropriate contexts</option>
+                    <option value="substrate">No appropriate substrates to practice on</option>
+                    <option value="feedback">Not getting useful feedback</option>
+                </select>
+            </div>
+
+            <button class="analyze-btn" onclick="analyzeCapability()">Analyze Capability</button>
+
+            <div id="analysis-result" class="result-box">
+                <!-- Results will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Section -->
+    <div id="quiz" class="content-section">
+        <h2>Test Your Understanding</h2>
+
+        <div class="quiz-container">
+            <div class="quiz-question">
+                <h3>Question 1: What is a constructor?</h3>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="a" onchange="checkAnswer(1, 'a')">
+                        A system that is consumed when it causes a transformation
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="b" onchange="checkAnswer(1, 'b')">
+                        A system that causes a transformation but emerges unchanged and can do it again
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="c" onchange="checkAnswer(1, 'c')">
+                        A system that only exists at the molecular level
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="d" onchange="checkAnswer(1, 'd')">
+                        A system that requires no energy to operate
+                    </label>
+                </div>
+                <div id="feedback-1" class="feedback"></div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>Question 2: Which of the following is NOT one of the five essential components of a capability?</h3>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="a" onchange="checkAnswer(2, 'a')">
+                        Information/Knowledge
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="b" onchange="checkAnswer(2, 'b')">
+                        Motivation
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="c" onchange="checkAnswer(2, 'c')">
+                        Energy/Resources
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="d" onchange="checkAnswer(2, 'd')">
+                        Context-Recognition
+                    </label>
+                </div>
+                <div id="feedback-2" class="feedback"></div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>Question 3: In capability development, what is the correct order of stages?</h3>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="a" onchange="checkAnswer(3, 'a')">
+                        Automatization → Refinement → Assembly
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="b" onchange="checkAnswer(3, 'b')">
+                        Assembly → Refinement → Automatization
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="c" onchange="checkAnswer(3, 'c')">
+                        Refinement → Assembly → Automatization
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="d" onchange="checkAnswer(3, 'd')">
+                        All stages happen simultaneously
+                    </label>
+                </div>
+                <div id="feedback-3" class="feedback"></div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>Question 4: What makes a parallel network more robust than a sequential network?</h3>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="a" onchange="checkAnswer(4, 'a')">
+                        It's faster
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="b" onchange="checkAnswer(4, 'b')">
+                        Multiple constructors can fail without destroying the whole system
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="c" onchange="checkAnswer(4, 'c')">
+                        It requires less energy
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="d" onchange="checkAnswer(4, 'd')">
+                        It's easier to build
+                    </label>
+                </div>
+                <div id="feedback-4" class="feedback"></div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>Question 5: What is the difference between task-achieving and constitutive capabilities?</h3>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="a" onchange="checkAnswer(5, 'a')">
+                        Task-achieving capabilities are individual; constitutive are collective
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="b" onchange="checkAnswer(5, 'b')">
+                        Task-achieving brings about specific outcomes; constitutive maintains systems in balance
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="c" onchange="checkAnswer(5, 'c')">
+                        Task-achieving is conscious; constitutive is unconscious
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="d" onchange="checkAnswer(5, 'd')">
+                        There is no real difference
+                    </label>
+                </div>
+                <div id="feedback-5" class="feedback"></div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>Question 6: Why did the Green Belt Movement succeed as a capability network?</h3>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q6" value="a" onchange="checkAnswer(6, 'a')">
+                        It focused on only one capability at a time
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q6" value="b" onchange="checkAnswer(6, 'b')">
+                        It built multiple interconnected capabilities with positive feedback loops and redundancy
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q6" value="c" onchange="checkAnswer(6, 'c')">
+                        It required everyone to have identical values
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q6" value="d" onchange="checkAnswer(6, 'd')">
+                        It depended entirely on one leader
+                    </label>
+                </div>
+                <div id="feedback-6" class="feedback"></div>
+            </div>
+        </div>
+
+        <div id="quiz-score" class="result-box" style="margin-top: 30px; text-align: center;">
+            <h3>Your Progress</h3>
+            <p id="score-display">Answer questions to see your score</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Tab navigation - FIXED VERSION
+    function showTab(tabName, buttonElement) {
+        // Hide all content sections
+        const sections = document.querySelectorAll('.content-section');
+        sections.forEach(section => section.classList.remove('active'));
+        
+        // Remove active class from all buttons
+        const buttons = document.querySelectorAll('.tab-button');
+        buttons.forEach(button => button.classList.remove('active'));
+        
+        // Show selected section
+        document.getElementById(tabName).classList.add('active');
+        
+        // Add active class to clicked button
+        buttonElement.classList.add('active');
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Network type selection - FIXED VERSION
+    function showNetworkInfo(type, element) {
+        // Hide all network info boxes
+        const boxes = document.querySelectorAll('[id^="network-"]');
+        boxes.forEach(box => box.classList.remove('show'));
+        
+        // Remove selected class from all network types
+        const types = document.querySelectorAll('.network-type');
+        types.forEach(t => t.classList.remove('selected'));
+        
+        // Show selected network info
+        document.getElementById('network-' + type).classList.add('show');
+        
+        // Add selected class to clicked type
+        element.classList.add('selected');
+    }
+
+    // Capability Builder Analysis
+    function analyzeCapability() {
+        const transformation = document.getElementById('transformation').value;
+        const capabilityType = document.getElementById('capability-type').value;
+        const reliability = document.getElementById('reliability').value;
+        const stage = document.getElementById('development-stage').value;
+        const constraint = document.getElementById('constraint').value;
+
+        if (!transformation || !capabilityType || !stage) {
+            alert('Please fill in at least the transformation, capability type, and development stage fields.');
+            return;
         }
 
-        // Network type selection
-        function showNetworkInfo(type) {
-            // Hide all network info boxes
-            const boxes = document.querySelectorAll('[id^="network-"]');
-            boxes.forEach(box => box.classList.remove('show'));
-            
-            // Remove selected class from all network types
-            const types = document.querySelectorAll('.network-type');
-            types.forEach(t => t.classList.remove('selected'));
-            
-            // Show selected network info
-            document.getElementById('network-' + type).classList.add('show');
-            
-            // Add selected class to clicked type
-            event.target.classList.add('selected');
+        let analysis = `<h3>Analysis Results</h3>`;
+        
+        analysis += `<div class="key-point">`;
+        analysis += `<h4>Your Capability:</h4>`;
+        analysis += `<p><strong>Transformation:</strong> ${transformation}</p>`;
+        analysis += `<p><strong>Type:</strong> ${capabilityType === 'task' ? 'Task-achieving' : capabilityType === 'constitutive' ? 'Constitutive' : 'Both task-achieving and constitutive'}</p>`;
+        
+        if (reliability) {
+            analysis += `<p><strong>Current Reliability:</strong> ${reliability}%</p>`;
         }
+        analysis += `</div>`;
 
-        // Capability Builder Analysis
-        function analyzeCapability() {
-            const transformation = document.getElementById('transformation').value;
-            const capabilityType = document.getElementById('capability-type').value;
-            const reliability = document.getElementById('reliability').value;
-            const stage = document.getElementById('development-stage').value;
-            const constraint = document.getElementById('constraint').value;
+        // Stage-specific guidance
+        analysis += `<div class="definition-box">`;
+        analysis += `<h4>Development Stage: ${stage.charAt(0).toUpperCase() + stage.slice(1)}</h4>`;
+        
+        if (stage === 'none') {
+            analysis += `<p>You haven't built this constructor yet. Focus on:</p>`;
+            analysis += `<ul>`;
+            analysis += `<li><strong>Finding models:</strong> Who has this capability? What resources exist?</li>`;
+            analysis += `<li><strong>Getting substrates:</strong> What can you practice on?</li>`;
+            analysis += `<li><strong>Initial attempts:</strong> Try the transformation, expect failures</li>`;
+            analysis += `<li><strong>Guided instruction:</strong> Find teachers, courses, or frameworks</li>`;
+            analysis += `</ul>`;
+        } else if (stage === 'assembly') {
+            analysis += `<p>You're in the initial learning phase. This is normal and expected! Focus on:</p>`;
+            analysis += `<ul>`;
+            analysis += `<li><strong>High volume practice:</strong> Many attempts build the constructor</li>`;
+            analysis += `<li><strong>Feedback:</strong> How do you know if transformation succeeded?</li>`;
+            analysis += `<li><strong>Pattern recognition:</strong> What works? What doesn't?</li>`;
+            analysis += `<li><strong>Patience:</strong> Weak constructors become strong through repetition</li>`;
+            analysis += `</ul>`;
+        } else if (stage === 'refinement') {
+            analysis += `<p>You're making progress! The constructor is forming. Focus on:</p>`;
+            analysis += `<ul>`;
+            analysis += `<li><strong>Consistency:</strong> Regular practice to strengthen pathways</li>`;
+            analysis += `<li><strong>Varied contexts:</strong> Practice in different situations to build robustness</li>`;
+            analysis += `<li><strong>Error correction:</strong> Notice failures and adjust</li>`;
+            analysis += `<li><strong>Efficiency:</strong> Can you do it faster? With less effort?</li>`;
+            analysis += `</ul>`;
+        } else if (stage === 'automatization') {
+            analysis += `<p>You have a well-developed capability! Focus on:</p>`;
+            analysis += `<ul>`;
+            analysis += `<li><strong>Maintenance:</strong> Continue using it (use it or lose it)</li>`;
+            analysis += `<li><strong>Composition:</strong> Combine with other capabilities for complex tasks</li>`;
+            analysis += `<li><strong>Teaching:</strong> Help others develop this capability</li>`;
+            analysis += `<li><strong>Refinement:</strong> Even experts can improve</li>`;
+            analysis += `</ul>`;
+        }
+        analysis += `</div>`;
 
-            if (!transformation || !capabilityType || !stage) {
-                alert('Please fill in at least the transformation, capability type, and development stage fields.');
-                return;
-            }
-
-            let analysis = `<h3>Analysis Results</h3>`;
-            
+        // Constraint-specific guidance
+        if (constraint) {
             analysis += `<div class="key-point">`;
-            analysis += `<h4>Your Capability:</h4>`;
-            analysis += `<p><strong>Transformation:</strong> ${transformation}</p>`;
-            analysis += `<p><strong>Type:</strong> ${capabilityType === 'task' ? 'Task-achieving' : capabilityType === 'constitutive' ? 'Constitutive' : 'Both task-achieving and constitutive'}</p>`;
-            
-            if (reliability) {
-                analysis += `<p><strong>Current Reliability:</strong> ${reliability}%</p>`;
-            }
+            analysis += `<h4>Primary Constraint: ${getConstraintName(constraint)}</h4>`;
+            analysis += `<p>${getConstraintGuidance(constraint)}</p>`;
             analysis += `</div>`;
-
-            // Stage-specific guidance
-            analysis += `<div class="definition-box">`;
-            analysis += `<h4>Development Stage: ${stage.charAt(0).toUpperCase() + stage.slice(1)}</h4>`;
-            
-            if (stage === 'none') {
-                analysis += `<p>You haven't built this constructor yet. Focus on:</p>`;
-                analysis += `<ul>`;
-                analysis += `<li><strong>Finding models:</strong> Who has this capability? What resources exist?</li>`;
-                analysis += `<li><strong>Getting substrates:</strong> What can you practice on?</li>`;
-                analysis += `<li><strong>Initial attempts:</strong> Try the transformation, expect failures</li>`;
-                analysis += `<li><strong>Guided instruction:</strong> Find teachers, courses, or frameworks</li>`;
-                analysis += `</ul>`;
-            } else if (stage === 'assembly') {
-                analysis += `<p>You're in the initial learning phase. This is normal and expected! Focus on:</p>`;
-                analysis += `<ul>`;
-                analysis += `<li><strong>High volume practice:</strong> Many attempts build the constructor</li>`;
-                analysis += `<li><strong>Feedback:</strong> How do you know if transformation succeeded?</li>`;
-                analysis += `<li><strong>Pattern recognition:</strong> What works? What doesn't?</li>`;
-                analysis += `<li><strong>Patience:</strong> Weak constructors become strong through repetition</li>`;
-                analysis += `</ul>`;
-            } else if (stage === 'refinement') {
-                analysis += `<p>You're making progress! The constructor is forming. Focus on:</p>`;
-                analysis += `<ul>`;
-                analysis += `<li><strong>Consistency:</strong> Regular practice to strengthen pathways</li>`;
-                analysis += `<li><strong>Varied contexts:</strong> Practice in different situations to build robustness</li>`;
-                analysis += `<li><strong>Error correction:</strong> Notice failures and adjust</li>`;
-                analysis += `<li><strong>Efficiency:</strong> Can you do it faster? With less effort?</li>`;
-                analysis += `</ul>`;
-            } else if (stage === 'automatization') {
-                analysis += `<p>You have a well-developed capability! Focus on:</p>`;
-                analysis += `<ul>`;
-                analysis += `<li><strong>Maintenance:</strong> Continue using it (use it or lose it)</li>`;
-                analysis += `<li><strong>Composition:</strong> Combine with other capabilities for complex tasks</li>`;
-                analysis += `<li><strong>Teaching:</strong> Help others develop this capability</li>`;
-                analysis += `<li><strong>Refinement:</strong> Even experts can improve</li>`;
-                analysis += `</ul>`;
-            }
-            analysis += `</div>`;
-
-            // Constraint-specific guidance
-            if (constraint) {
-                analysis += `<div class="key-point">`;
-                analysis += `<h4>Primary Constraint: ${getConstraintName(constraint)}</h4>`;
-                analysis += `<p>${getConstraintGuidance(constraint)}</p>`;
-                analysis += `</div>`;
-            }
-
-            // Component recommendations
-            analysis += `<div class="definition-box">`;
-            analysis += `<h4>Next Steps for Development:</h4>`;
-            analysis += `<ol>`;
-            analysis += `<li><strong>Identify missing components:</strong> Review each of the five components you entered. Which are weakest?</li>`;
-            analysis += `<li><strong>Design practice regime:</strong> What substrates can you practice on regularly?</li>`;
-            analysis += `<li><strong>Establish feedback:</strong> How will you know if you're improving?</li>`;
-            analysis += `<li><strong>Build supporting capabilities:</strong> What lower-level capabilities do you need first?</li>`;
-            analysis += `<li><strong>Track progress:</strong> Measure reliability over time</li>`;
-            analysis += `</ol>`;
-            analysis += `</div>`;
-
-            document.getElementById('analysis-result').innerHTML = analysis;
-            document.getElementById('analysis-result').classList.add('show');
         }
 
-        function getConstraintName(constraint) {
-            const names = {
-                'info': 'Missing Information/Knowledge',
-                'physical': 'Lack of Physical Substrate',
-                'energy': 'Insufficient Resources/Energy',
-                'control': 'Poor Control/Regulation',
-                'context': 'Context Recognition Issues',
-                'substrate': 'No Appropriate Substrates',
-                'feedback': 'Inadequate Feedback'
-            };
-            return names[constraint] || constraint;
-        }
+        // Component recommendations
+        analysis += `<div class="definition-box">`;
+        analysis += `<h4>Next Steps for Development:</h4>`;
+        analysis += `<ol>`;
+        analysis += `<li><strong>Identify missing components:</strong> Review each of the five components you entered. Which are weakest?</li>`;
+        analysis += `<li><strong>Design practice regime:</strong> What substrates can you practice on regularly?</li>`;
+        analysis += `<li><strong>Establish feedback:</strong> How will you know if you're improving?</li>`;
+        analysis += `<li><strong>Build supporting capabilities:</strong> What lower-level capabilities do you need first?</li>`;
+        analysis += `<li><strong>Track progress:</strong> Measure reliability over time</li>`;
+        analysis += `</ol>`;
+        analysis += `</div>`;
 
-        function getConstraintGuidance(constraint) {
-            const guidance = {
-                'info': 'Focus on acquiring knowledge. Find resources: books, courses, experts, tutorials. Study how others perform this transformation. Understanding the "how" is crucial for building the constructor.',
-'physical': 'You need to build or access the physical infrastructure. This might mean: training your body/brain, acquiring tools, building infrastructure, or partnering with those who have it.',
-'energy': 'Secure the resources needed: time, money, attention, materials. Consider: Can you allocate more? Can you find funding? Can you make the process more efficient to require less?',
-'control': 'Develop better regulation mechanisms. Work on: recognizing when to activate the capability, inhibiting it when inappropriate, managing the process, building executive function or governance structures.',
-'context': 'Improve your ability to recognize the right conditions. Practice: noticing relevant cues, distinguishing appropriate from inappropriate contexts, pattern recognition, sensitivity to situational factors.',
-'substrate': 'Find or create opportunities to practice. Seek: real situations, simulations, practice partners, cases to work on. Without substrates, the constructor cannot develop.',
-'feedback': 'Establish clear feedback mechanisms. You need: immediate knowledge of results, external assessment (teachers, coaches, metrics), comparison to standards, reflection on what works and what doesn't.'
-};
-return guidance[constraint] || 'Focus on addressing this constraint systematically.';
-}
-// Quiz functionality
+        document.getElementById('analysis-result').innerHTML = analysis;
+        document.getElementById('analysis-result').classList.add('show');
+    }
+
+    function getConstraintName(constraint) {
+        const names = {
+            'info': 'Missing Information/Knowledge',
+            'physical': 'Lack of Physical Substrate',
+            'energy': 'Insufficient Resources/Energy',
+            'control': 'Poor Control/Regulation',
+            'context': 'Context Recognition Issues',
+            'substrate': 'No Appropriate Substrates',
+            'feedback': 'Inadequate Feedback'
+        };
+        return names[constraint] || constraint;
+    }function getConstraintGuidance(constraint) {
+        const guidance = {
+            'info': 'Focus on acquiring knowledge. Find resources: books, courses, experts, tutorials. Study how others perform this transformation. Understanding the "how" is crucial for building the constructor.',
+            'physical': 'You need to build or access the physical infrastructure. This might mean: training your body/brain, acquiring tools, building infrastructure, or partnering with those who have it.',
+            'energy': 'Secure the resources needed: time, money, attention, materials. Consider: Can you allocate more? Can you find funding? Can you make the process more efficient to require less?',
+            'control': 'Develop better regulation mechanisms. Work on: recognizing when to activate the capability, inhibiting it when inappropriate, managing the process, building executive function or governance structures.',
+            'context': 'Improve your ability to recognize the right conditions. Practice: noticing relevant cues, distinguishing appropriate from inappropriate contexts, pattern recognition, sensitivity to situational factors.',
+            'substrate': 'Find or create opportunities to practice. Seek: real situations, simulations, practice partners, cases to work on. Without substrates, the constructor cannot develop.',
+            'feedback': 'Establish clear feedback mechanisms. You need: immediate knowledge of results, external assessment (teachers, coaches, metrics), comparison to standards, reflection on what works and what doesn\'t.'
+        };
+        return guidance[constraint] || 'Focus on addressing this constraint systematically.';
+    }
+
+    // Quiz functionality
     const quizAnswers = {
         1: 'b',
         2: 'b',
@@ -1569,10 +1566,10 @@ return guidance[constraint] || 'Focus on addressing this constraint systematical
         document.getElementById('quiz-score').classList.add('show');
     }
 
-    // Initialize
+    // Initialize on page load
     document.addEventListener('DOMContentLoaded', function() {
-        // Set initial active tab
-        showTab('overview');
+        console.log('Page loaded successfully!');
+        // The Overview tab is already active by default in the HTML
     });
 </script></body>
 </html>
